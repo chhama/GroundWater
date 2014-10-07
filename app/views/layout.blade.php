@@ -1,52 +1,70 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>GROUND WATER MIS</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-{{ HTML::Style('css/bootstrap.min.css') }}
-{{ HTML::Script('js/jquery.js') }}
-{{ HTML::Script('js/jquery.js') }}
-{{ HTML::Style('css/dzStyle.css') }}
-</head>
-<body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-	<div class="navbar-header" style="background:maroon">
-    	<a class="navbar-brand" href="{{ URL::to('/')}}">Dashboard</a>
-  	</div>
-    <div class="col-md-8">
-    	<div class="collapse navbar-collapse">
-    		<ul class="nav navbar-nav">
-          <li><a href="{{ URL::route('district.index')}}">District</a></li>
-          <li><a href="{{ URL::route('block.index')}}">Block</a></li>
-          <li><a href="{{ URL::route('panchayat.index')}}">Panchayat</a></li>
-          <li><a href="{{ URL::route('officezone.index')}}">Office Zone</a></li>
-          <li><a href="{{ URL::route('officecircle.index')}}">Office Circle</a></li>
-          <li><a href="{{ URL::route('officedivision.index')}}">Office Division</a></li>
-          <li><a href="{{ URL::route('officesubdivision.index')}}">Office Sub-Division</a></li>
-          <li><a href="{{ URL::route('officesection.index')}}">Office Section</a></li>
-          <li><a href="{{ URL::route('tubewell.index')}}">Tubewell</a></li>
-          <li><a href="{{ URL::route('tubewell.create')}}">Add Tubewell</a></li>
-    		</ul>
-    	</div>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PHE Ground Water Management System</title>
+
+    <!-- Bootstrap CSS -->
+  {{ HTML::Style('css/bootstrap.min.css') }}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  
+  <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">PHE</a>
     </div>
-    <div class="col-md-2">
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav pull-right">
-          <li><a href="{{ URL::to('/user')}}">User</a></li>
-          <li><a href="{{ URL::to('/logout')}}">Logout</a></li>
-        </ul>
-      </div>
-    </div>
-</nav>
-<div class="container" style="margin-top:70px">
-  @if(Session::has('message'))
-      <p class="alert alert-success"><strong>{{ Session::get('message') }}</strong></p>
-  @endif
-	@yield('container')
-</div>
-<footer class="dzFooter nav navbar-inverse text-center" style="height:50px; padding-top:15px; color:#FFF ">
-    Osasys &copy;  <?=date('Y')?> 
-</footer>
-</body>
+  
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-ex1-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+      </ul>
+      
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="username">
+          <input type="text" class="form-control" placeholder="password">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </nav>
+
+
+    <h1 class="text-center">Hello World</h1>
+
+    <!-- jQuery -->
+    {{ HTML::Script('js/jquery.js') }}
+    <!-- Bootstrap JavaScript -->
+    {{ HTML::Script('js/bootstrap.js') }}
+  </body>
 </html>
