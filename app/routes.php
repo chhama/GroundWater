@@ -24,4 +24,6 @@ Route::resource('officezone', 'OfficeZoneController');
 Route::resource('officecircle', 'OfficeCircleController');
 Route::resource('officedivision', 'OfficeDivisionController');
 Route::resource('officesubdivision', 'OfficeSubDivisionController');
+Route::get('officesubdivision/{id}/division', array('uses'=>'OfficeSubDivisionController@division','as'=>'officesubdivision.division'));
+Route::get('officesection/{id}/subDivision', array('uses'=>'OfficeSectionController@subDivision','as'=>'officesection.subDivision'));
 Route::resource('officesection', 'OfficeSectionController');

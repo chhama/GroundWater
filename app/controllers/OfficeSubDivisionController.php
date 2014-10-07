@@ -113,5 +113,13 @@ class OfficeSubDivisionController extends \BaseController {
 		return Redirect::route('officesubdivision.index');
 	}
 
+	public function division(){
+		$id = Input::get('id');
+		$divByCircle = OfficeDivision::where('office_circle_id','=',$id)->lists('name','id');
+		foreach ($divByCircle as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
+
 
 }

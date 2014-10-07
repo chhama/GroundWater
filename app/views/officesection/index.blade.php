@@ -56,7 +56,7 @@
             <div class="form-group">
             	<div class="col-sm-4">{{ Form::label('Zone / Circle') }}</div>
                 <div class="col-sm-8">
-                    <select name="office_circle_id" class="form-control input-sm" required>
+                    <select name="office_circle_id" class="form-control input-sm" required onChange="return subDivByCircle(this.value);">
                         <option></option>
                         @foreach($officeZoneAll as $id => $officeZone)
                             <optgroup label="{{ $officeZone }}">
@@ -74,7 +74,7 @@
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Division / Sub Division') }}</div>
                 <div class="col-sm-8">
-                    <select name="office_sub_division_id" class="form-control input-sm" required>
+                    <select name="office_sub_division_id" class="form-control input-sm" required id="office_sub_division_id">
                         <option></option>
                         @foreach($officeDivisionAll as $id => $officeDivision)
                             <optgroup label="{{ $officeDivision }}">
@@ -100,3 +100,15 @@
     </div>
 </div>
 @stop
+<script>
+    function subDivByCircle(subDivision){
+        $.ajax({
+            url: "{{ URL::route('officesection.subDivision')}}",
+            data: {'id': subDivision},
+            type: 'GET', 
+        }).success(function(data){
+            $('#office_sub_division_id').html(data);
+        })
+
+    }
+</script>

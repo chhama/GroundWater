@@ -118,5 +118,18 @@ class OfficeSectionController extends \BaseController {
 		return Redirect::route('officesection.index');
 	}
 
+	public function subDivision(){
+		$id = Input::get('id');
+		$divByCircle = OfficeDivision::where('office_circle_id','=',$id)->lists('name','id');
+		foreach ($divByCircle as $id => $name) {
+			echo "<optgroup label='$name'>";
+                $officeSubDivision = OfficeSubDivision::where('office_division_id','=',$id)->orderBy('name','asc')->lists('name','id'); 
+                foreach ($officeSubDivision as $subId => $subName) {
+                    echo "<option value='$subId'>$subName</option>";
+                }
+            echo "</optgroup>";
+		}
+	}
+
 
 }

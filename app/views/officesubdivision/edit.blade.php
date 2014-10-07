@@ -56,7 +56,7 @@
             <div class="form-group">
             	<div class="col-sm-4">{{ Form::label('Zone / Circle') }}</div>
                 <div class="col-sm-8">
-                    <select name="office_circle_id" class="form-control input-sm" required>
+                    <select name="office_circle_id" class="form-control input-sm" required onChange="return divByCircle(this.value);">
                         <option></option>
                         @foreach($officeZoneAll as $id => $officeZone)
                             <optgroup label="{{ $officeZone }}">
@@ -77,10 +77,10 @@
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Division') }}</div>
                 <div class="col-sm-8">
-                    <select name="office_division_id" class="form-control input-sm" required>
+                    <select name="office_division_id" class="form-control input-sm" required id="office_division_id">
                         <option></option>
                         <?php
-                            $officeDivision = OfficeDivision::orderBy('name','asc')->lists('name','id'); 
+                            $officeDivision = OfficeDivision::where('id','=',$officeSubDivisionById->office_division_id)->orderBy('name','asc')->lists('name','id'); 
                             foreach ($officeDivision as $id => $name) {
                                 if($id == $officeSubDivisionById->office_division_id){
                                     $selected = "selected";
@@ -102,3 +102,15 @@
     </div>
 </div>
 @stop
+<script>
+    function divByCircle(division){
+        $.ajax({
+            url: "{{ URL::route('officesubdivision.division')}}",
+            data: {'id': division},
+            type: 'GET', 
+        }).success(function(data){
+            $('#office_division_id').html(data);
+        })
+
+    }
+</script>
