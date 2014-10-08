@@ -34,3 +34,4 @@ Route::get('tubewell/{id}/panchayat', array('uses'=>'TubewellController@panchaya
 Route::get('tubewell/{id}/circle', array('uses'=>'TubewellController@circle','as'=>'tubewell.circle'));
 Route::resource('officesection', 'OfficeSectionController');
 Route::resource('sessions', 'SessionsController');
+Route::resource('user','UsersController');
