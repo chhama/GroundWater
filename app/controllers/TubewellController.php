@@ -7,6 +7,11 @@ class TubewellController extends \BaseController {
 	 *
 	 * @return Response
 	 */
+	public function __construct()
+	{
+		$this->beforeFilter('auth');
+	}
+
 	public function index()
 	{
 		$tubewellAll = Tubewell::orderBy('tubewellCode','asc')->paginate();

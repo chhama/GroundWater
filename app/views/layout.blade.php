@@ -27,40 +27,68 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">PHE</a>
+      <a class="navbar-brand" href="/">PHE</a>
     </div>
   
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><a href="#">District</a></li>
+        <li><a href="{{ URL::route('block.index') }}">Block</a></li>
+        <li><a href="#">Panchayat</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="#">Link</a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tubewells <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ URL::route('tubewell.index') }}">List</a></li>
+          <li><a href="{{ URL::route('tubewell.create') }}">Create</a></li>
+        </ul>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Office <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a href="{{ URL::route('officezone.index')}}">Zone</a></li>
+            <li><a href="{{ URL::route('officecircle.index')}}">Circle</a></li>
+            <li><a href="{{ URL::route('officedivision.index')}}">Division</a></li>
+            <li><a href="{{ URL::route('officesubdivision.index')}}">Sub-Division</a></li>
+            <li><a href="{{ URL::route('officesection.index')}}">Section</a></li>
           </ul>
         </li>
       </ul>
-      <form class="navbar-form navbar-right" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="username">
-          <input type="text" class="form-control" placeholder="password">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+
+    <?php  if(Auth::check()) {?>
+        <a href='logout'>
+        <span class='navbar-right glyphicon glyphicon-off alert-warning'> Logout
+        </span>
+        </a>
+
+  <?php } else { ?>
+  {{Form::open(['route'=>'sessions.store','class'=>'navbar-form navbar-right'])}}
+      {{"<div class='form-group'>"}}
+        {{Form::text('username','',['class'=>'form-control'])}}
+        {{Form::password('password',['class'=>'form-control'])}}
+      {{"</div>"}}
+        {{Form::submit('Login',['class'=>'btn btn-default'])}}
+        {{Form::close()}}
+  <?php } ?>
     </div><!-- /.navbar-collapse -->
+  
   </nav>
 
+  @if(Session::has('flash_message'))
+    <div class="container" style="margin-top:5px">
+          <p class="alert alert-{{Session::get('msgtype')}}"><strong>{{ Session::get('flash_message') }}</strong></p>
+    </div>
+  @endif
 
+ 
+<div class="jumbotron">
     <h1 class="text-center">Hello World</h1>
+</div>
+ @yield('container')
 
     <!-- jQuery -->
     {{ HTML::Script('js/jquery.js') }}
