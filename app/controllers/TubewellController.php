@@ -7,11 +7,6 @@ class TubewellController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function __construct()
-	{
-		$this->beforeFilter('auth');
-	}
-
 	public function index()
 	{
 		$tubewellAll = Tubewell::orderBy('tubewellCode','asc')->paginate();
@@ -187,5 +182,32 @@ class TubewellController extends \BaseController {
 		return Redirect::route('tubewell.index');
 	}
 
+	public function block(){
+		$id = Input::get('id');
+		$blockByDist = Block::where('district_id','=',$id)->lists('name','id');
+		echo "<option></option>";
+		foreach ($blockByDist as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
+
+	public function panchayat(){
+		$id = Input::get('id');
+		$panchayatByBlock = Panchayat::where('block_id','=',$id)->lists('name','id');
+		echo "<option></option>";
+		foreach ($panchayatByBlock as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
+
+	public function circle(){
+		echo "Hello"; exit();
+		$id = Input::get('id');
+		$circleByZone = OfficeCircle::where('office_zone_id','=',$id)->lists('name','id');
+		echo "<option></option>";
+		foreach ($circleByZone as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
 
 }

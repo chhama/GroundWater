@@ -22,7 +22,7 @@
                 <div class="form-group">
                     <div class="col-sm-4">{{ Form::label('District') }}</div>
                     <div class="col-sm-8">
-                        {{ Form::select('district_id',array('')+$districtAll,'',array('class'=>'form-control input-sm','required')) }}
+                        {{ Form::select('district_id',array('')+$districtAll,'',array('class'=>'form-control input-sm','required','onChange'=>"return blockByDist(this.value)")) }}
                     </div>
                 </div>
             </div>
@@ -30,13 +30,13 @@
                 <div class="form-group">
                     <div class="col-sm-4">{{ Form::label('Block') }}</div>
                     <div class="col-sm-8">
-                        {{ Form::select('block_id',array('')+$blockAll,'',array('class'=>'form-control input-sm','required')) }}
+                        {{ Form::select('block_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'block_id','onChange'=>"return panchayatByBlock(this.value)")) }}
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-7">{{ Form::label('Gram Panchayat / Village / Habitation') }}</div>
                     <div class="col-sm-5">
-                        {{ Form::select('panchayat_id',array('')+$panchayatAll,'',array('class'=>'form-control input-sm','required')) }}
+                        {{ Form::select('panchayat_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'panchayat_id')) }}
                     </div>
                 </div>
                 <div class="form-group">
@@ -79,13 +79,13 @@
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('CE') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_zone_id',array('')+$officeZoneAll,'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('office_zone_id',array('')+$officeZoneAll,'',array('class'=>'form-control input-sm','required','onChange'=>"return circleByZone(this.value)")) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Circle') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_circle_id',array('')+$officeCircleAll,'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('office_circle_id',array('')+$officeCircleAll,'',array('class'=>'form-control input-sm','required','id'=>'office_circle_id')) }}
                 </div>
             </div>
             <div class="form-group">
@@ -149,8 +149,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-7">{{ Form::label('Tubewell Status') }}</div>
-                <div class="col-sm-5">
+                <div class="col-sm-5">{{ Form::label('Tubewell Status') }}</div>
+                <div class="col-sm-7">
                     {{ Form::select('wellStatus',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
@@ -165,3 +165,35 @@
     </div>
 </div>
 @stop
+<script>
+    function blockByDist(block){
+        $.ajax({
+            url: "{{ URL::route('tubewell.block')}}",
+            data: {'id': block},
+            type: 'GET', 
+        }).success(function(data){
+            $('#block_id').html(data);
+        })
+
+    }
+
+    function panchayatByBlock(panchayat){
+        $.ajax({
+            url: "{{ URL::route('tubewell.panchayat')}}",
+            data: {'id': panchayat},
+            type: 'GET', 
+        }).success(function(data){
+            $('#panchayat_id').html(data);
+        })
+    }
+
+    function circleByZone(circle){
+        $.ajax({
+            url: "{{ URL::route('tubewell.circle')}}",
+            data: {'id': circle},
+            type: 'GET', 
+        }).success(function(data){
+            $('#circle_id').html(data);
+        })
+    }
+</script>

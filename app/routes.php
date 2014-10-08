@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('/', ['as'=>'home',function()
+Route::get('/', function()
 {
 	return View::make('home.index');
-}]);
-
-Route::get('login','SessionsController@create');
-Route::get('logout','SessionsController@destroy');
+});
 
 Route::resource('tubewell', 'TubewellController');
 Route::resource('district', 'DistrictController');
@@ -29,5 +26,7 @@ Route::resource('officedivision', 'OfficeDivisionController');
 Route::resource('officesubdivision', 'OfficeSubDivisionController');
 Route::get('officesubdivision/{id}/division', array('uses'=>'OfficeSubDivisionController@division','as'=>'officesubdivision.division'));
 Route::get('officesection/{id}/subDivision', array('uses'=>'OfficeSectionController@subDivision','as'=>'officesection.subDivision'));
+Route::get('tubewell/{id}/block', array('uses'=>'TubewellController@block','as'=>'tubewell.block'));
+Route::get('tubewell/{id}/panchayat', array('uses'=>'TubewellController@panchayat','as'=>'tubewell.panchayat'));
+Route::get('tubewell/{id}/circle', array('uses'=>'TubewellController@circle','as'=>'tubewell.circle'));
 Route::resource('officesection', 'OfficeSectionController');
-Route::resource('sessions', 'SessionsController');
