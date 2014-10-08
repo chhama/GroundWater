@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
   {{ HTML::Style('css/bootstrap.min.css') }}
 
+  @yield('extrahead')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -61,7 +62,7 @@
 
     <?php  if(Auth::check()) {?>
         <a href='logout'>
-        <span class='navbar-right glyphicon glyphicon-off alert-warning'> Logout
+        <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px'> 
         </span>
         </a>
 
@@ -85,9 +86,9 @@
   @endif
 
  
-<div class="jumbotron">
+<!-- <div class="jumbotron">
     <h1 class="text-center">Hello World</h1>
-</div>
+</div> -->
  @yield('container')
 
     <!-- jQuery -->
