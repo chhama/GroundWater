@@ -14,7 +14,7 @@ class TubewellController extends \BaseController {
 
 	public function index()
 	{
-		$tubewellAll = Tubewell::orderBy('tubewellCode','asc')->paginate();
+		$tubewellAll = Tubewell::orderBy('tubewell_code','asc')->paginate();
 
 		return View::make('tubewell.index')
 					->with(array('tubewellAll'=>$tubewellAll));
@@ -61,7 +61,7 @@ class TubewellController extends \BaseController {
 	public function store()
 	{
 		$tubewell = new Tubewell();
-		$tubewell->tubewellCode = Input::get('tubewellCode') ;
+		$tubewell->tubewell_code = Input::get('tubewell_code') ;
 		$tubewell->delivery_id = Input::get('delivery_id') ;
 		$tubewell->district_id = Input::get('district_id') ;
 		$tubewell->block_id = Input::get('block_id') ;
@@ -77,14 +77,14 @@ class TubewellController extends \BaseController {
 		$tubewell->office_division_id = Input::get('office_division_id') ;
 		$tubewell->office_sub_division_id = Input::get('office_sub_division_id') ;
 		$tubewell->office_section_id = Input::get('office_section_id') ;
-		$tubewell->depthSWL = Input::get('depthSWL') ;
-		$tubewell->depthBoring = Input::get('depthBoring') ;
-		$tubewell->sizeBoring = Input::get('sizeBoring') ;
-		$tubewell->drillingDate = Input::get('drillingDate') ;
-		$tubewell->commissionDate = Input::get('commissionDate') ;
+		$tubewell->depth_swl = Input::get('depth_swl') ;
+		$tubewell->depth_boring = Input::get('depth_boring') ;
+		$tubewell->size_boring = Input::get('size_boring') ;
+		$tubewell->drilling_date = Input::get('drilling_date') ;
+		$tubewell->commission_date = Input::get('commission_date') ;
 		$tubewell->discharge = Input::get('discharge') ;
 		$tubewell->platform = Input::get('platform') ;
-		$tubewell->wellStatus = Input::get('wellStatus') ;
+		$tubewell->well_status = Input::get('well_status') ;
 		$tubewell->save();
 
 		return Redirect::route('tubewell.edit',$tubewell->id);
@@ -145,7 +145,7 @@ class TubewellController extends \BaseController {
 	public function update($id)
 	{
 		$tubewell = Tubewell::find($id);
-		$tubewell->tubewellCode = Input::get('tubewellCode') ;
+		$tubewell->tubewell_code = Input::get('tubewell_code') ;
 		$tubewell->delivery_id = Input::get('delivery_id') ;
 		$tubewell->district_id = Input::get('district_id') ;
 		$tubewell->block_id = Input::get('block_id') ;
@@ -161,14 +161,14 @@ class TubewellController extends \BaseController {
 		$tubewell->office_division_id = Input::get('office_division_id') ;
 		$tubewell->office_sub_division_id = Input::get('office_sub_division_id') ;
 		$tubewell->office_section_id = Input::get('office_section_id') ;
-		$tubewell->depthSWL = Input::get('depthSWL') ;
-		$tubewell->depthBoring = Input::get('depthBoring') ;
-		$tubewell->sizeBoring = Input::get('sizeBoring') ;
-		$tubewell->drillingDate = Input::get('drillingDate') ;
-		$tubewell->commissionDate = Input::get('commissionDate') ;
+		$tubewell->depth_swl = Input::get('depth_swl') ;
+		$tubewell->depth_boring = Input::get('depth_boring') ;
+		$tubewell->size_boring = Input::get('size_boring') ;
+		$tubewell->drilling_date = Input::get('drilling_date') ;
+		$tubewell->commission_date = Input::get('commission_date') ;
 		$tubewell->discharge = Input::get('discharge') ;
 		$tubewell->platform = Input::get('platform') ;
-		$tubewell->wellStatus = Input::get('wellStatus') ;
+		$tubewell->well_status = Input::get('well_status') ;
 		$tubewell->save();
 
 		return Redirect::route('tubewell.edit',$tubewell->id);

@@ -34,9 +34,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">District</a></li>
+        <li class="active"><a href="{{ URL::route('district.index') }}">District</a></li>
         <li><a href="{{ URL::route('block.index') }}">Block</a></li>
-        <li><a href="#">Panchayat</a></li>
+        <li><a href="{{ URL::route('panchayat.index') }}">Panchayat</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-left">

@@ -10,7 +10,7 @@
                 <div class="form-group">
                 	<div class="col-sm-4">{{ Form::label('Tubewell ID') }}</div>
                     <div class="col-sm-8">
-                        {{ Form::text('tubewellCode','',array('class'=>'form-control input-sm','required')) }}
+                        {{ Form::text('tubewell_code','',array('class'=>'form-control input-sm','required')) }}
                     </div>
                 </div>
                 <div class="form-group">
@@ -109,31 +109,31 @@
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Depth of SWL (Metre)') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('depthSWL','',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::text('depth_swl','',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Depth of Boring (Metre)') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('depthBoring','',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::text('depth_boring','',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Size of Boring (Metre)') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('sizeBoring','',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::text('size_boring','',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Drilling Date') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('drillingDate','',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::text('drilling_date','',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Commission Date') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('commissionDate','',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::text('commission_date','',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
@@ -151,7 +151,7 @@
             <div class="form-group">
                 <div class="col-sm-5">{{ Form::label('Tubewell Status') }}</div>
                 <div class="col-sm-7">
-                    {{ Form::select('wellStatus',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
