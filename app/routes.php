@@ -11,10 +11,13 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', ['as'=>'home',function()
 {
 	return View::make('home.index');
-});
+}]);
+
+Route::get('login','SessionsController@create');
+Route::get('logout','SessionsController@destroy');
 
 Route::resource('tubewell', 'TubewellController');
 Route::resource('district', 'DistrictController');
@@ -30,3 +33,4 @@ Route::get('tubewell/{id}/block', array('uses'=>'TubewellController@block','as'=
 Route::get('tubewell/{id}/panchayat', array('uses'=>'TubewellController@panchayat','as'=>'tubewell.panchayat'));
 Route::get('tubewell/{id}/circle', array('uses'=>'TubewellController@circle','as'=>'tubewell.circle'));
 Route::resource('officesection', 'OfficeSectionController');
+Route::resource('sessions', 'SessionsController');
