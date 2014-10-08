@@ -36,7 +36,7 @@ class SessionsController extends \BaseController {
 				'password' => Input::get('password')
 			]);
 
-		if ($attempt) return Redirect::intended('/')->with(['flash_message'=>'Logged In','msgtype'=>'success']);
+		if ($attempt) return Redirect::intended('/');
 		else
 			return Redirect::to('/')->with(['flash_message'=>'Invalid Username or Password','msgtype'=>'danger'])->withInput();
 	}

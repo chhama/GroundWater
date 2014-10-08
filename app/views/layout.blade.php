@@ -62,7 +62,7 @@
 
     <?php  if(Auth::check()) {?>
         <a href='logout'>
-        <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px'> 
+        <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px; color:red;width:30px;'> 
         </span>
         </a>
 
