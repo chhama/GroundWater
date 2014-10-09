@@ -40,3 +40,4 @@ Route::resource('officesection', 'OfficeSectionController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('user', 'UsersController');
 Route::resource('lithology', 'LithologiesController');
+Route::resource('waterquality','WaterQualityController');

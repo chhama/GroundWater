@@ -38,6 +38,7 @@
         <li><a href="{{ URL::route('block.index') }}">Block</a></li>
         <li><a href="{{ URL::route('panchayat.index') }}">Panchayat</a></li>
         <li><a href="{{ URL::route('lithology.index') }}">Lithology</a></li>
+
       </ul>
       
       <ul class="nav navbar-nav navbar-left">
@@ -60,21 +61,28 @@
           </ul>
         </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ URL::route('user.index') }}">List</a></li>
-            <li><a href="{{ URL::route('user.create') }}">Create</a></li>
-          </ul>
-        </li>
-      </ul>
+       
+        <li><a href="{{ URL::route('user.index') }}">Users</a></li>
+         
+        <li><a href="{{ URL::route('waterquality.index') }}">Water Quality</a></li>
+
+
+    </ul>
 
     <?php  if(Auth::check()) {?>
-        <a href='logout'>
-        <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px; color:red;width:30px;'> 
-        </span>
+      <ul class='navbar navbar-right navbar-nav' style='list-style-type:none;'>
+        <li>        
+          <a href='user.editprofile'>
+            <span class='glyphicon glyphicon-user' style='margin-top:15px; color:#668855;width:100px;'> Profile</span>        
         </a>
-
+        </li>
+        <li> 
+          <a href='logout'>
+            <span class='glyphicon glyphicon-off' style='margin-top:15px; color:red;width:90px;' > Logout</span>
+          </a>
+        </li>
+        
+      </ul>
   <?php } else { ?>
   {{Form::open(['route'=>'sessions.store','class'=>'navbar-form navbar-right'])}}
       {{"<div class='form-group'>"}}
