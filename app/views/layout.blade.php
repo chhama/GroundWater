@@ -37,6 +37,7 @@
         <li class="active"><a href="{{ URL::route('district.index') }}">District</a></li>
         <li><a href="{{ URL::route('block.index') }}">Block</a></li>
         <li><a href="{{ URL::route('panchayat.index') }}">Panchayat</a></li>
+        <li><a href="{{ URL::route('lithology.index') }}">Lithology</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-left">

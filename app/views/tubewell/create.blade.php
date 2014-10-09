@@ -71,9 +71,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Allevation') }}</div>
+                <div class="col-sm-4">{{ Form::label('Elevation') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('allevation','',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::text('elevation','',array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
@@ -85,25 +85,25 @@
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Circle') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_circle_id',array('')+$officeCircleAll,'',array('class'=>'form-control input-sm','required','id'=>'office_circle_id')) }}
+                    {{ Form::select('office_circle_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_circle_id','onChange'=>"return divByCircle(this.value)")) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Division') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_division_id',array('')+$officeDivisionAll,'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('office_division_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_division_id','onChange'=>"return subdivByDiv(this.value)")) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Sub Division') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_sub_division_id',array('')+$officeSubDivisionAll,'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('office_sub_division_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_sub_division_id','onChange'=>"return secBySubdiv(this.value)")) }}
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Section') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_section_id',array('')+$officeSectionAll,'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('office_section_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_section_id')) }}
                 </div>
             </div>
             <div class="form-group">
@@ -151,9 +151,10 @@
             <div class="form-group">
                 <div class="col-sm-5">{{ Form::label('Tubewell Status') }}</div>
                 <div class="col-sm-7">
-                    {{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required','onChange'=>"return status(this.value)")) }}
                 </div>
             </div>
+            <div id="status">&nbsp;</div>
             <div class="form-group">
             	<div class="col-sm-4"></div>
                 <div class="col-sm-8">
@@ -193,7 +194,47 @@
             data: {'id': circle},
             type: 'GET', 
         }).success(function(data){
-            $('#circle_id').html(data);
+            $('#office_circle_id').html(data);
+        })
+    }
+
+    function divByCircle(division){
+        $.ajax({
+            url: "{{ URL::route('tubewell.division')}}",
+            data: {'id': division},
+            type: 'GET', 
+        }).success(function(data){
+            $('#office_division_id').html(data);
+        })
+    }
+
+    function subdivByDiv(subdivision){
+        $.ajax({
+            url: "{{ URL::route('tubewell.subdivision')}}",
+            data: {'id': subdivision},
+            type: 'GET', 
+        }).success(function(data){
+            $('#office_sub_division_id').html(data);
+        })
+    }
+
+    function secBySubdiv(section){
+        $.ajax({
+            url: "{{ URL::route('tubewell.section')}}",
+            data: {'id': section},
+            type: 'GET', 
+        }).success(function(data){
+            $('#office_section_id').html(data);
+        })
+    }
+
+    function status(status){
+        $.ajax({
+            url: "{{ URL::route('tubewell.status')}}",
+            data: {'id': status},
+            type: 'GET', 
+        }).success(function(data){
+            $('#status').html(data);
         })
     }
 </script>

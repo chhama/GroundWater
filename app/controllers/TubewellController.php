@@ -71,7 +71,7 @@ class TubewellController extends \BaseController {
 		$tubewell->landmark = Input::get('landmark') ;
 		$tubewell->latitude = Input::get('latitude') ;
 		$tubewell->longitude = Input::get('longitude') ;
-		$tubewell->allevation = Input::get('allevation') ;
+		$tubewell->elevation = Input::get('elevation') ;
 		$tubewell->office_zone_id = Input::get('office_zone_id') ;
 		$tubewell->office_circle_id = Input::get('office_circle_id') ;
 		$tubewell->office_division_id = Input::get('office_division_id') ;
@@ -85,6 +85,18 @@ class TubewellController extends \BaseController {
 		$tubewell->discharge = Input::get('discharge') ;
 		$tubewell->platform = Input::get('platform') ;
 		$tubewell->well_status = Input::get('well_status') ;
+		if(Input::get('well_status') == 'Damage') {
+			$tubewell->well_status_date = Input::get('well_status_date');
+			$tubewell->well_status_note = Input::get('well_status_note');
+			$tubewell->well_status_nature_damage = Input::get('well_status_nature_damage');
+			$tubewell->well_status_action = Input::get('well_status_action');
+			$tubewell->well_status_repaired_date = Input::get('well_status_repaired_date');
+			$tubewell->well_status_repaired_by = Input::get('well_status_repaired_by');
+		}
+		if(Input::get('well_status') == 'Defunction') {
+			$tubewell->well_status_date = Input::get('well_status_date');
+			$tubewell->well_status_note = Input::get('well_status_note');
+		}
 		$tubewell->save();
 
 		return Redirect::route('tubewell.edit',$tubewell->id);
@@ -121,6 +133,7 @@ class TubewellController extends \BaseController {
 		$officeDivisionAll = OfficeDivision::orderBy('name','asc')->lists('name','id');
 		$officeSubDivisionAll = OfficeSubDivision::orderBy('name','asc')->lists('name','id');
 		$deliveryAll = Delivery::orderBy('name','asc')->lists('name','id');
+		
 		return View::make('tubewell.edit')
 					->with(array('districtAll'=>$districtAll,
 								 'blockAll'=>$blockAll,
@@ -155,7 +168,7 @@ class TubewellController extends \BaseController {
 		$tubewell->landmark = Input::get('landmark') ;
 		$tubewell->latitude = Input::get('latitude') ;
 		$tubewell->longitude = Input::get('longitude') ;
-		$tubewell->allevation = Input::get('allevation') ;
+		$tubewell->elevation = Input::get('elevation') ;
 		$tubewell->office_zone_id = Input::get('office_zone_id') ;
 		$tubewell->office_circle_id = Input::get('office_circle_id') ;
 		$tubewell->office_division_id = Input::get('office_division_id') ;
@@ -169,6 +182,18 @@ class TubewellController extends \BaseController {
 		$tubewell->discharge = Input::get('discharge') ;
 		$tubewell->platform = Input::get('platform') ;
 		$tubewell->well_status = Input::get('well_status') ;
+		if(Input::get('well_status') == 'Damage') {
+			$tubewell->well_status_date = Input::get('well_status_date');
+			$tubewell->well_status_note = Input::get('well_status_note');
+			$tubewell->well_status_nature_damage = Input::get('well_status_nature_damage');
+			$tubewell->well_status_action = Input::get('well_status_action');
+			$tubewell->well_status_repaired_date = Input::get('well_status_repaired_date');
+			$tubewell->well_status_repaired_by = Input::get('well_status_repaired_by');
+		}
+		if(Input::get('well_status') == 'Defunction') {
+			$tubewell->well_status_date = Input::get('well_status_date');
+			$tubewell->well_status_note = Input::get('well_status_note');
+		}
 		$tubewell->save();
 
 		return Redirect::route('tubewell.edit',$tubewell->id);
@@ -206,12 +231,48 @@ class TubewellController extends \BaseController {
 	}
 
 	public function circle(){
-		echo "Hello"; exit();
 		$id = Input::get('id');
 		$circleByZone = OfficeCircle::where('office_zone_id','=',$id)->lists('name','id');
 		echo "<option></option>";
 		foreach ($circleByZone as $id => $name) {
 			echo "<option value='$id'>$name</option>";
+		}
+	}
+
+	public function division(){
+		$id = Input::get('id');
+		$divByCircle = OfficeDivision::where('office_circle_id','=',$id)->lists('name','id');
+		echo "<option></option>";
+		foreach ($divByCircle as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
+
+	public function subdivision(){
+		$id = Input::get('id');
+		$subdivByDiv = OfficeSubDivision::where('office_division_id','=',$id)->lists('name','id');
+		echo "<option></option>";
+		foreach ($subdivByDiv as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
+
+	public function section(){
+		$id = Input::get('id');
+		$secBySubdiv = OfficeSection::where('office_sub_division_id','=',$id)->lists('name','id');
+		echo "<option></option>";
+		foreach ($secBySubdiv as $id => $name) {
+			echo "<option value='$id'>$name</option>";
+		}
+	}
+
+	public function status(){
+		$id = Input::get('id');
+		if($id == 'Damage') {
+			return View::make('tubewell.damage');
+		}
+		if($id == 'Defunction'){
+			return View::make('tubewell.defunction');
 		}
 	}
 }

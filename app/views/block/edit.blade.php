@@ -3,7 +3,7 @@
 @section('container')
 <div class="col-md-8">
 <div class="panel panel-default">
-<div class="panel-heading"><h5><strong>MANAGE ITEMS</strong></h5></div>
+<div class="panel-heading"><h5><strong>MANAGE BLOCK</strong></h5></div>
 <div class="panel-body" style="padding:0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover" style="margin-bottom:0px;">
 <thead>
@@ -22,7 +22,7 @@
     <td height="25" align="center">{{$slno}}</td>
     <td height="25" align="left">{{ $block->code }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $block->name }}&nbsp;</td>
-    <td height="25" align="left" bgcolor="">{{ $block->district_id }}&nbsp;</td>
+    <td height="25" align="left" bgcolor="">{{ $block->district->name }}&nbsp;</td>
     <td align="left" class="action text-center">
     	{{Form::open(array('url'=>route('block.destroy', array($block->id)),'method'=>'delete'))}}
 			<a href="{{route('block.edit', array($block->id))}}" class="btn btn-xs btn-success tooltip-top" title="Edit prod"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
@@ -44,7 +44,7 @@
 </div>
 <div class="col-md-4">
 	<div class="panel panel-default">
-		<div class="panel-heading"><strong>ADD ITEM</strong></div>
+		<div class="panel-heading"><strong>EDIT BLOCK</strong></div>
 		<div class="panel-body">
         {{ Form::model($blockById, array('url'=>route('block.update',$blockById->id),'method'=>'put','class'=>'form-horizontal')) }}
             <div class="form-group">

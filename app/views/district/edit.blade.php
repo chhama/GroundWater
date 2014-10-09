@@ -3,7 +3,7 @@
 @section('container')
 <div class="col-md-8">
 <div class="panel panel-default">
-<div class="panel-heading"><h5><strong>MANAGE ITEMS</strong></h5></div>
+<div class="panel-heading"><h5><strong>MANAGE DISTRICT</strong></h5></div>
 <div class="panel-body" style="padding:0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover" style="margin-bottom:0px;">
 <thead>
@@ -42,7 +42,7 @@
 </div>
 <div class="col-md-4">
 	<div class="panel panel-default">
-		<div class="panel-heading"><strong>ADD ITEM</strong></div>
+		<div class="panel-heading"><strong>EDIT DISTRICT</strong></div>
 		<div class="panel-body">
         {{ Form::model($districtById,array('url'=>route('district.update',$districtById->id),'method'=>'put','class'=>'form-horizontal')) }}
             <div class="form-group">

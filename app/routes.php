@@ -32,6 +32,11 @@ Route::get('officesection/{id}/subDivision', array('uses'=>'OfficeSectionControl
 Route::get('tubewell/{id}/block', array('uses'=>'TubewellController@block','as'=>'tubewell.block'));
 Route::get('tubewell/{id}/panchayat', array('uses'=>'TubewellController@panchayat','as'=>'tubewell.panchayat'));
 Route::get('tubewell/{id}/circle', array('uses'=>'TubewellController@circle','as'=>'tubewell.circle'));
+Route::get('tubewell/{id}/division', array('uses'=>'TubewellController@division','as'=>'tubewell.division'));
+Route::get('tubewell/{id}/subdivision', array('uses'=>'TubewellController@subdivision','as'=>'tubewell.subdivision'));
+Route::get('tubewell/{id}/section', array('uses'=>'TubewellController@section','as'=>'tubewell.section'));
+Route::get('tubewell/{id}/status', array('uses'=>'TubewellController@status','as'=>'tubewell.status'));
 Route::resource('officesection', 'OfficeSectionController');
 Route::resource('sessions', 'SessionsController');
-Route::resource('user','UsersController');
+Route::resource('user', 'UsersController');
+Route::resource('lithology', 'LithologiesController');

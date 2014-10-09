@@ -3,7 +3,7 @@
 @section('container')
 <div class="col-md-12">
 <div class="panel panel-default">
-<div class="panel-heading"><h5><strong>MANAGE ITEMS</strong></h5></div>
+<div class="panel-heading"><h5><strong>MANAGE TUBEWELL</strong></h5></div>
 <div class="panel-body" style="padding:0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover" style="margin-bottom:0px;">
 <thead>
@@ -25,10 +25,10 @@
   	<tr bgcolor="">
     <td height="25" align="center">{{$slno}}</td>
     <td height="25" align="left">{{ $tubewell->tubewell_code }}&nbsp;</td>
-    <td height="25" align="left">{{ $tubewell->delivery_id }}&nbsp;</td>
-    <td height="25" align="left">{{ $tubewell->district_id }}, {{ $tubewell->block_id }}, {{ $tubewell->panchayat_id }}, {{ $tubewell->location }}&nbsp;</td>
-    <td height="25" align="left">{{ $tubewell->latitude }}, {{ $tubewell->longitude }}, {{ $tubewell->allevation }}&nbsp;</td>
-    <td height="25" align="left">{{ $tubewell->office_zone_id }}, {{ $tubewell->office_circle_id }}, {{ $tubewell->office_division_id }}, {{ $tubewell->office_sub_division_id }}, {{ $tubewell->office_section_id }}&nbsp;</td>
+    <td height="25" align="left">{{ $tubewell->delivery->name }}&nbsp;</td>
+    <td height="25" align="left">{{ $tubewell->district->name }}, {{ $tubewell->block->name }}, {{ $tubewell->panchayat->name }}, {{ $tubewell->location }}&nbsp;</td>
+    <td height="25" align="left">{{ $tubewell->latitude }}, {{ $tubewell->longitude }}, {{ $tubewell->elevation }}&nbsp;</td>
+    <td height="25" align="left">{{ $tubewell->officeZone->name }}, {{ $tubewell->officeCircle->name }}, {{ $tubewell->officeDivision->name }}, {{ $tubewell->officeSubDivision->name }}, {{ $tubewell->officeSection->name }}&nbsp;</td>
     <td height="25" align="left">{{ $tubewell->well_status }} &nbsp;</td>
     <td height="25" align="left">{{ $tubewell->commission_date }} &nbsp;</td>
     <td align="left" class="action text-center">

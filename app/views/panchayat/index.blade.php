@@ -3,7 +3,7 @@
 @section('container')
 <div class="col-md-8">
 <div class="panel panel-default">
-<div class="panel-heading"><h5><strong>MANAGE ITEMS</strong></h5></div>
+<div class="panel-heading"><h5><strong>MANAGE PANCHAYAT</strong></h5></div>
 <div class="panel-body" style="padding:0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover" style="margin-bottom:0px;">
 <thead>
@@ -23,8 +23,8 @@
     <td height="25" align="center">{{$slno}}</td>
     <td height="25" align="left">{{ $panchayat->code }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $panchayat->name }}&nbsp;</td>
-    <td height="25" align="left" bgcolor="">{{ $panchayat->block_id }}&nbsp;</td>
-    <td height="25" align="left" bgcolor="">{{ $panchayat->district_id }}&nbsp;</td>
+    <td height="25" align="left" bgcolor="">{{ $panchayat->block->name }}&nbsp;</td>
+    <td height="25" align="left" bgcolor="">{{ $panchayat->district->name }}&nbsp;</td>
     <td align="left" class="action text-center">
     	{{Form::open(array('url'=>route('panchayat.destroy', array($panchayat->id)),'method'=>'delete'))}}
 			<a href="{{route('panchayat.edit', array($panchayat->id))}}" class="btn btn-xs btn-success tooltip-top" title="Edit prod"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
@@ -46,7 +46,7 @@
 </div>
 <div class="col-md-4">
 	<div class="panel panel-default">
-		<div class="panel-heading"><strong>ADD ITEM</strong></div>
+		<div class="panel-heading"><strong>ADD PANCHAYAT</strong></div>
 		<div class="panel-body">
         {{ Form::open(array('url'=>route('panchayat.store'),'method'=>'post','class'=>'form-horizontal')) }}
             <div class="form-group">

@@ -3,7 +3,7 @@
 @section('container')
 <div class="col-md-8">
 <div class="panel panel-default">
-<div class="panel-heading"><h5><strong>MANAGE ITEMS</strong></h5></div>
+<div class="panel-heading"><h5><strong>MANAGE SUB DIVISION</strong></h5></div>
 <div class="panel-body" style="padding:0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover" style="margin-bottom:0px;">
 <thead>
@@ -21,8 +21,8 @@
   	<tr bgcolor="">
     <td height="25" align="center">{{$slno}}</td>
     <td height="25" align="left" bgcolor="">{{ $officeSubDivision->name }}&nbsp;</td>
-    <td height="25" align="left" bgcolor="">{{ $officeSubDivision->office_division_id }} / {{ $officeSubDivision->office_circle_id }}&nbsp;</td>
-    <td height="25" align="left" bgcolor="">{{ $officeSubDivision->office_zone_id }}&nbsp;</td>
+    <td height="25" align="left" bgcolor="">{{ $officeSubDivision->officeDivision->name }} / {{ $officeSubDivision->officeCircle->name }}&nbsp;</td>
+    <td height="25" align="left" bgcolor="">{{ $officeSubDivision->officeZone->name }}&nbsp;</td>
     <td align="left" class="action text-center">
     	{{Form::open(array('url'=>route('officesubdivision.destroy', array($officeSubDivision->id)),'method'=>'delete'))}}
 			<a href="{{route('officesubdivision.edit', array($officeSubDivision->id))}}" class="btn btn-xs btn-success tooltip-top" title="Edit prod"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
@@ -44,7 +44,7 @@
 </div>
 <div class="col-md-4">
 	<div class="panel panel-default">
-		<div class="panel-heading"><strong>ADD ITEM</strong></div>
+		<div class="panel-heading"><strong>ADD SUB DIVISION</strong></div>
 		<div class="panel-body">
         {{ Form::open(array('url'=>route('officesubdivision.store'),'method'=>'post','class'=>'form-horizontal')) }}
             <div class="form-group">
