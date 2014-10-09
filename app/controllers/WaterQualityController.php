@@ -1,6 +1,6 @@
 <?php
 
-class UsersController extends \BaseController {
+class WaterQualityController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +9,12 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('user.index');
+		$waterqualityAll = WaterQuality::orderBy('id','asc')->paginate();
+		$index = $waterqualityAll->getPerPage() * ($waterqualityAll->getCurrentPage()-1) + 1;
+		return View::make('waterquality.index')->with(array(
+						'waterqualityAll' => $waterqualityAll,
+						'index'	=> $index
+					));	
 	}
 
 
@@ -20,7 +25,7 @@ class UsersController extends \BaseController {
 	 */
 	public function create()
 	{
-		return View::make('user.create');
+		//
 	}
 
 
