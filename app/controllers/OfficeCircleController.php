@@ -11,9 +11,11 @@ class OfficeCircleController extends \BaseController {
 	{
 		$officeZoneAll = OfficeZone::orderBy('name','asc')->lists('name','id');
 		$officeCircleAll = officeCircle::orderBy('name','asc')->paginate();
+		$index = $officeCircleAll->getPerPage() * ($officeCircleAll->getCurrentPage()-1) + 1;
 		return View::make('officecircle.index')->with(array(
 						'officeZoneAll' => $officeZoneAll,
-						'officeCircleAll' => $officeCircleAll
+						'officeCircleAll' => $officeCircleAll,
+						'index' => $index
 					));	
 	}
 
@@ -68,10 +70,12 @@ class OfficeCircleController extends \BaseController {
 		$officeZoneAll = OfficeZone::orderBy('name','asc')->lists('name','id');
 		$officeCircleAll = OfficeCircle::orderBy('name','asc')->paginate();
 		$officeCircleById = OfficeCircle::find($id);
+		$index = $officeCircleAll->getPerPage() * ($officeCircleAll->getCurrentPage()-1) + 1;
 		return View::make('officecircle.edit')->with(array(
 						'officeZoneAll' => $officeZoneAll,
 						'officeCircleAll' => $officeCircleAll,
-						'officeCircleById' => $officeCircleById
+						'officeCircleById' => $officeCircleById,
+						'index' => $index
 					));	
 	}
 

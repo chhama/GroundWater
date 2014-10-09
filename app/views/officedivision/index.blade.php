@@ -16,10 +16,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($officeDivisionAll as $officeDivision)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left" bgcolor="">{{ $officeDivision->name }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $officeDivision->officeCircle->name }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $officeDivision->officeZone->name }}&nbsp;</td>

@@ -11,9 +11,12 @@ class PanchayatController extends \BaseController {
 	{
 		$districtAll = District::orderBy('name','asc')->lists('name','id');
 		$panchayatAll = Panchayat::orderBy('name','asc')->paginate();
+		$index = $panchayatAll->getPerPage() * ($panchayatAll->getCurrentPage()-1) + 1;
+
 		return View::make('panchayat.index')->with(array(
 						'districtAll' 	=> $districtAll,
-						'panchayatAll'	=> $panchayatAll 
+						'panchayatAll'	=> $panchayatAll,
+						'index' => $index
 					));	
 	}
 
@@ -71,10 +74,13 @@ class PanchayatController extends \BaseController {
 		$districtAll = District::orderBy('name','asc')->lists('name','id');
 		$panchayatAll = Panchayat::orderBy('name','asc')->paginate();
 		$panchayatById = Panchayat::find($id);
+		$index = $panchayatAll->getPerPage() * ($panchayatAll->getCurrentPage()-1) + 1;
+
 		return View::make('panchayat.edit')->with(array(
 						'districtAll' 	=> $districtAll,
 						'panchayatAll' 	=> $panchayatAll,
-						'panchayatById'	=> $panchayatById
+						'panchayatById'	=> $panchayatById,
+						'index' => $index
 					));	
 	}
 

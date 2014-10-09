@@ -15,9 +15,13 @@ class TubewellController extends \BaseController {
 	public function index()
 	{
 		$tubewellAll = Tubewell::orderBy('tubewell_code','asc')->paginate();
+		$index = $tubewellAll->getPerPage() * ($tubewellAll->getCurrentPage()-1) + 1;
 
 		return View::make('tubewell.index')
-					->with(array('tubewellAll'=>$tubewellAll));
+					->with(array(
+							'tubewellAll'=>$tubewellAll,
+							'index' => $index
+						  ));
 
 
 	}

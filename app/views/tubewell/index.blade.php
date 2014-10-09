@@ -20,10 +20,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($tubewellAll as $tubewell)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left">{{ $tubewell->tubewell_code }}&nbsp;</td>
     <td height="25" align="left">{{ $tubewell->delivery->name }}&nbsp;</td>
     <td height="25" align="left">{{ $tubewell->district->name }}, {{ $tubewell->block->name }}, {{ $tubewell->panchayat->name }}, {{ $tubewell->location }}&nbsp;</td>

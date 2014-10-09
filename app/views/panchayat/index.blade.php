@@ -17,10 +17,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($panchayatAll as $panchayat)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left">{{ $panchayat->code }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $panchayat->name }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $panchayat->block->name }}&nbsp;</td>

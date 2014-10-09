@@ -10,8 +10,10 @@ class OfficeZoneController extends \BaseController {
 	public function index()
 	{
 		$officeZoneAll = OfficeZone::orderBy('name','asc')->paginate();
+		$index = $officeZoneAll->getPerPage() * ($officeZoneAll->getCurrentPage()-1) + 1;
 		return View::make('officezone.index')->with(array(
-						'officeZoneAll' => $officeZoneAll
+						'officeZoneAll' => $officeZoneAll,
+						'index' => $index
 					));	
 	}
 
@@ -65,9 +67,11 @@ class OfficeZoneController extends \BaseController {
 	{
 		$officeZoneById = OfficeZone::find($id);
 		$officeZoneAll = OfficeZone::orderBy('name','asc')->paginate();
+		$index = $officeZoneAll->getPerPage() * ($officeZoneAll->getCurrentPage()-1) + 1;
 		return View::make('officezone.edit')->with(array(
 						'officeZoneAll' => $officeZoneAll,
-						'officeZoneById' => $officeZoneById
+						'officeZoneById' => $officeZoneById,
+						'index' => $index
 					));
 	}
 

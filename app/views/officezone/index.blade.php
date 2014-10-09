@@ -14,10 +14,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($officeZoneAll as $officeZone)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left">{{ $officeZone->name }}&nbsp;</td>
     <td align="left" class="action text-center">
     	{{Form::open(array('url'=>route('officezone.destroy', array($officeZone->id)),'method'=>'delete'))}}

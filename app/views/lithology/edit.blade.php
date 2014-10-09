@@ -17,10 +17,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($lithologyAll as $lithology)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left">{{ $lithology->tubewell_id }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $lithology->depth_from }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $lithology->depth_to }}&nbsp;</td>

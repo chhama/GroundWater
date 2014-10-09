@@ -11,9 +11,11 @@ class BlockController extends \BaseController {
 	{
 		$districtAll = District::orderBy('name','asc')->lists('name','id');
 		$blockAll = Block::orderBy('name','asc')->paginate();
+		$index = $blockAll->getPerPage() * ($blockAll->getCurrentPage()-1) + 1;
 		return View::make('block.index')->with(array(
 						'districtAll' => $districtAll,
-						'blockAll' => $blockAll
+						'blockAll' => $blockAll,
+						'index'	=> $index
 					));	
 	}
 
@@ -69,10 +71,12 @@ class BlockController extends \BaseController {
 		$districtAll = District::orderBy('name','asc')->lists('name','id');
 		$blockAll = Block::orderBy('name','asc')->paginate();
 		$blockById = Block::find($id);
+		$index = $blockAll->getPerPage() * ($blockAll->getCurrentPage()-1) + 1;
 		return View::make('block.edit')->with(array(
 						'districtAll' => $districtAll,
 						'blockAll' => $blockAll,
-						'blockById' => $blockById
+						'blockById' => $blockById,
+						'index' => $index
 					));	
 	}
 

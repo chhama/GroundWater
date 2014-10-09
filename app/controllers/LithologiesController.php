@@ -10,8 +10,10 @@ class LithologiesController extends \BaseController {
 	public function index()
 	{
 		$lithologyAll = Lithologies::orderBy('tubewell_id','asc')->paginate();
+		$index = $lithologyAll->getPerPage() * ($lithologyAll->getCurrentPage()-1) + 1;
 		return View::make('lithology.index')->with(array(
-						'lithologyAll' => $lithologyAll
+						'lithologyAll' => $lithologyAll,
+						'index' => $index
 					));	
 	}
 
@@ -68,9 +70,11 @@ class LithologiesController extends \BaseController {
 	{
 		$lithologyById = Lithologies::find($id);
 		$lithologyAll = Lithologies::orderBy('tubewell_id','asc')->paginate();
+		$index = $lithologyAll->getPerPage() * ($lithologyAll->getCurrentPage()-1) + 1;
 		return View::make('lithology.edit')->with(array(
 						'lithologyAll' => $lithologyAll,
-						'lithologyById' => $lithologyById
+						'lithologyById' => $lithologyById,
+						'index' => $index
 					));
 	}
 

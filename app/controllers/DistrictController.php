@@ -10,8 +10,10 @@ class DistrictController extends \BaseController {
 	public function index()
 	{
 		$districtAll = District::orderBy('name','asc')->paginate();
+		$index = $districtAll->getPerPage() * ($districtAll->getCurrentPage()-1) + 1;
 		return View::make('district.index')->with(array(
-						'districtAll' => $districtAll
+						'districtAll' => $districtAll,
+						'index'	=> $index
 					));	
 	}
 
@@ -66,9 +68,11 @@ class DistrictController extends \BaseController {
 	{
 		$districtById = District::find($id);
 		$districtAll = District::orderBy('name','asc')->paginate();
+		$index = $districtAll->getPerPage() * ($districtAll->getCurrentPage()-1) + 1;
 		return View::make('district.edit')->with(array(
 						'districtAll' => $districtAll,
-						'districtById' => $districtById
+						'districtById' => $districtById,
+						'index' => $index
 					));
 	}
 

@@ -15,10 +15,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($districtAll as $district)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left">{{ $district->name }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $district->code }}&nbsp;</td>
     <td align="left" class="action text-center">

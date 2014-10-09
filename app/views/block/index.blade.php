@@ -16,10 +16,10 @@
   </tr>
   </thead>
   <tbody>
-  	<?php $slno = 1; ?>
+  	<?php $slno = 0; ?>
   	@foreach($blockAll as $block)
   	<tr bgcolor="">
-    <td height="25" align="center">{{$slno}}</td>
+    <td height="25" align="center">{{$slno+$index}}</td>
     <td height="25" align="left">{{ $block->code }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $block->name }}&nbsp;</td>
     <td height="25" align="left" bgcolor="">{{ $block->district->name }}&nbsp;</td>

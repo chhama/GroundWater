@@ -11,9 +11,11 @@ class OfficeDivisionController extends \BaseController {
 	{
 		$officeZoneAll = OfficeZone::orderBy('name','asc')->lists('name','id');
 		$officeDivisionAll = OfficeDivision::orderBy('name','asc')->paginate();
+		$index = $officeDivisionAll->getPerPage() * ($officeDivisionAll->getCurrentPage()-1) + 1;
 		return View::make('officedivision.index')->with(array(
 						'officeZoneAll' 	=> $officeZoneAll,
-						'officeDivisionAll'	=> $officeDivisionAll 
+						'officeDivisionAll'	=> $officeDivisionAll,
+						'index' => $index
 					));	
 	}
 
@@ -70,11 +72,12 @@ class OfficeDivisionController extends \BaseController {
 		$officeZoneAll = OfficeZone::orderBy('name','asc')->lists('name','id');
 		$officeDivisionAll = OfficeDivision::orderBy('name','asc')->paginate();
 		$officeDivisionById = OfficeDivision::find($id);
-
+		$index = $officeDivisionAll->getPerPage() * ($officeDivisionAll->getCurrentPage()-1) + 1;
 		return View::make('officedivision.edit')->with(array(
 						'officeZoneAll' 		=> $officeZoneAll,
 						'officeDivisionAll'		=> $officeDivisionAll,
-						'officeDivisionById'	=> $officeDivisionById 
+						'officeDivisionById'	=> $officeDivisionById,
+						'index' => $index
 					));	
 	}
 
