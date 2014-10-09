@@ -60,14 +60,8 @@
           </ul>
         </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ URL::route('report.tubewell')}}">No of Tubewell</a></li>
-            <li><a href="{{ URL::route('officecircle.index')}}">Water Quality Parameters</a></li>
-            <li><a href="{{ URL::route('officedivision.index')}}">Tube Well Status</a></li>
-          </ul>
-        </li>
+        <li><a href="{{ URL::route('waterquality.index') }}">Water Quality</a></li>
+
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
@@ -76,12 +70,27 @@
             <li><a href="{{ URL::route('user.create') }}">Create</a></li>
           </ul>
         </li>
-      </ul>
+
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ URL::route('report.tubewell')}}">No of Tubewell</a></li>
+            <li><a href="{{ URL::route('officecircle.index')}}">Water Quality Parameters</a></li>
+            <li><a href="{{ URL::route('officedivision.index')}}">Tube Well Status</a></li>
+          </ul>
+      </li>
+
+
+    </ul>
+
 
     <?php  if(Auth::check()) {?>
+        <a href="{{ URL::route('user.edit') }}">
+          <span class='navbar-right glyphicon glyphicon-user' style='margin-top:15px; color:#337a89;width:90px;'> Profile </span>
+        </a>
+
         <a href='logout'>
-        <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px; color:red;width:30px;'> 
-        </span>
+          <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px; color:red;width:90px;'> Logout</span>
         </a>
 
   <?php } else { ?>

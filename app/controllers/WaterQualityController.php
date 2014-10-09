@@ -36,7 +36,7 @@ class WaterQualityController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		echo 'sss' ;
 	}
 
 

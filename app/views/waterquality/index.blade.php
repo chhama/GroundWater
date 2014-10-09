@@ -10,13 +10,14 @@
 		<h4>New Water Quality Test Record</h4>
 	</div>
 	<div class="panel-body">
-	   <table class="table table-striped table-hover">
-	   	<thead>
-				  
-				    
-				    
-		</thead>
+  	{{Form::open(['route'=>'waterquality.store','class'=>'navbar-form'])}}
+		<div class='form-group'>
+	   	<table class="table table-striped table-hover">
+	   		<thead>
+				  		    
+			</thead>
 	   	<tbody>
+	   
 	   		<tr><td>{{Form::Label('','Tubewell ID')}}</td>
 	   		<td>{{Form::text('','',['class'=>'form-control'])}}</td>
 	   				<td>{{Form::Label('','pH')}}</td>
@@ -97,9 +98,11 @@
 		    <td>{{Form::text('','',['class'=>'form-control'])}}</td>
 		    		<td>{{Form::Label('','Test date')}}</td>
 		    <td>{{Form::text('','',['class'=>'form-control'])}}</td></tr>
+		    </div>
 	   	</tbody>
 	   </table>
 	   {{Form::button('Submit',['class'=>'form-control btn btn-info'])}}
+	   {{Form::close()}}
 	</div>
 </div>
 
