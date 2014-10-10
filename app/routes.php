@@ -37,6 +37,7 @@ Route::get('tubewell/{id}/subdivision', array('uses'=>'TubewellController@subdiv
 Route::get('tubewell/{id}/section', array('uses'=>'TubewellController@section','as'=>'tubewell.section'));
 Route::get('tubewell/{id}/status', array('uses'=>'TubewellController@status','as'=>'tubewell.status'));
 Route::get('report/tubewell', array('uses'=>'ReportController@tubewell','as'=>'report.tubewell'));
+Route::get('report/filtertubewell', array('uses'=>'ReportController@filtertubewell','as'=>'report.filtertubewell'));
 Route::resource('officesection', 'OfficeSectionController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('user', 'UsersController');

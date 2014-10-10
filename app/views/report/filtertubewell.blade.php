@@ -15,12 +15,14 @@
   </thead>
   <tbody>
   	<?php $slno = 1; ?>
+    @foreach($reports as $report)
   	<tr bgcolor="">
     	<td>{{$slno}}</td>
-    	<td>{{ $name }}&nbsp;</td>
-    	<td>{{ $value }}&nbsp;</td>
+    	<td>{{ $report->delivery_id }}&nbsp;</td>
+    	<td>{{ $report->countRow }}&nbsp;</td>
     </tr>
     <?php $slno++; ?>
+    @endforeach
 </tbody>
 <tfoot>
 </tfoot>
