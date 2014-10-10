@@ -2,6 +2,12 @@
 
 class BlockController extends \BaseController {
 
+
+	public function __construct()
+	{
+		$this->beforeFilter('auth');
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
