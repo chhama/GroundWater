@@ -9,7 +9,11 @@ class UsersController extends \BaseController {
 	 */
 	public function index()
 	{
-		return View::make('user.index');
+		$allusers=User::orderBy('username','asc')->paginate();
+
+		return View::make('user.index')->with([
+				'allusers' => $allusers
+			]);
 	}
 
 
@@ -31,7 +35,15 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		
+		$user=new User();
+		$user->username = Input::get('username');
+		$user->password = Hash::make(Input::get('username'));
+		$user->remember_token = Input::get('_token');
+		$user->usertype = Input::get('usertype');
+		if($user->save())
+			return Redirect::back()->with(['flash_message'=>'User successfully created','msgtype'=>'success']);
+
 	}
 
 

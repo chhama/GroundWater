@@ -6,155 +6,79 @@
 		<div class="panel-heading"><strong>ADD TUBEWELL</strong></div>
 		<div class="panel-body">
         {{ Form::open(array('url'=>route('tubewell.store'),'method'=>'post','class'=>'form-inline')) }}
-            <div class="row">
-                <div class="form-group">
-                	<div class="col-sm-4">{{ Form::label('Tubewell ID') }}</div>
-                    <div class="col-sm-8">
-                        {{ Form::text('tubewell_code','',array('class'=>'form-control input-sm','required')) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                	<div class="col-sm-5">{{ Form::label('Delivery Mode') }}</div>
-                    <div class="col-sm-7">
-                        {{ Form::select('delivery_id',array('')+$deliveryAll,'',array('class'=>'form-control input-sm','required')) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4">{{ Form::label('District') }}</div>
-                    <div class="col-sm-8">
-                        {{ Form::select('district_id',array('')+$districtAll,'',array('class'=>'form-control input-sm','required','onChange'=>"return blockByDist(this.value)")) }}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <div class="col-sm-4">{{ Form::label('Block') }}</div>
-                    <div class="col-sm-8">
-                        {{ Form::select('block_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'block_id','onChange'=>"return panchayatByBlock(this.value)")) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-7">{{ Form::label('Gram Panchayat / Village / Habitation') }}</div>
-                    <div class="col-sm-5">
-                        {{ Form::select('panchayat_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'panchayat_id')) }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4">{{ Form::label('Location') }}</div>
-                    <div class="col-sm-8">
-                        {{ Form::text('location','',array('class'=>'form-control input-sm')) }}
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Sub Location') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('sub_location','',array('class'=>'form-control input-sm')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Landmark') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('landmark','',array('class'=>'form-control input-sm')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Latitude') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('latitude','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Longitude') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('longitude','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Elevation') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('elevation','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('CE') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::select('office_zone_id',array('')+$officeZoneAll,'',array('class'=>'form-control input-sm','required','onChange'=>"return circleByZone(this.value)")) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Circle') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::select('office_circle_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_circle_id','onChange'=>"return divByCircle(this.value)")) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Division') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::select('office_division_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_division_id','onChange'=>"return subdivByDiv(this.value)")) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Sub Division') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::select('office_sub_division_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_sub_division_id','onChange'=>"return secBySubdiv(this.value)")) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Section') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::select('office_section_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_section_id')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Depth of SWL (Metre)') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('depth_swl','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Depth of Boring (Metre)') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('depth_boring','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Size of Boring (Metre)') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('size_boring','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Drilling Date') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('drilling_date','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Commission Date') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('commission_date','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-4">{{ Form::label('Discharge (lt/hr)') }}</div>
-                <div class="col-sm-8">
-                    {{ Form::text('discharge','',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-7">{{ Form::label('Is Platform Provided') }}</div>
-                <div class="col-sm-5">
-                    {{ Form::select('platform',array(''=>'','Yes'=>'Yes','No'=>'No'),'',array('class'=>'form-control input-sm','required')) }}
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-5">{{ Form::label('Tubewell Status') }}</div>
-                <div class="col-sm-7">
-                    {{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required','onChange'=>"return status(this.value)")) }}
-                </div>
-            </div>
-            <div id="status">&nbsp;</div>
+
+        <table class="table table-hover">
+            <thead>
+              
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ Form::label('Tubewell ID') }}</td>
+                    <td>{{ Form::text('tubewell_code','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Delivery Mode') }}</td>
+                    <td>{{ Form::select('delivery_id',array('')+$deliveryAll,'',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('District') }}</td>
+                    <td>{{ Form::select('district_id',array('')+$districtAll,'',array('class'=>'form-control input-sm','required','onChange'=>"return blockByDist(this.value)")) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Block') }}</td>
+                    <td>{{ Form::select('block_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'block_id','onChange'=>"return panchayatByBlock(this.value)")) }}</td>
+                    <td>{{ Form::label('Gram Panchayat / Village / Habitation') }}</td>
+                    <td>{{ Form::select('panchayat_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'panchayat_id')) }}</td>
+                    <td>{{ Form::label('Location') }}</td>
+                    <td>{{ Form::text('location','',array('class'=>'form-control input-sm')) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Sub Location') }}</td>
+                    <td>{{ Form::text('sub_location','',array('class'=>'form-control input-sm')) }}</td>
+                    <td>{{ Form::label('Landmark') }}</td>
+                    <td>{{ Form::text('landmark','',array('class'=>'form-control input-sm')) }}</td>
+                    <td>{{ Form::label('Latitude') }}</td>
+                    <td>{{ Form::text('latitude','',array('class'=>'form-control input-sm','required')) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Longitude') }}</td>
+                    <td>{{ Form::text('longitude','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Elevation') }}</td>
+                    <td>{{ Form::text('elevation','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('CE') }}</td>
+                    <td>{{ Form::select('office_zone_id',array('')+$officeZoneAll,'',array('class'=>'form-control input-sm','required','onChange'=>"return circleByZone(this.value)")) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Circle') }}</td>
+                    <td>{{ Form::select('office_circle_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_circle_id','onChange'=>"return divByCircle(this.value)")) }}</td>
+                    <td>{{ Form::label('Division') }}</td>
+                    <td>{{ Form::select('office_division_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_division_id','onChange'=>"return subdivByDiv(this.value)")) }}</td>
+                    <td>{{ Form::label('Sub Division') }}</td>
+                    <td>{{ Form::select('office_sub_division_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_sub_division_id','onChange'=>"return secBySubdiv(this.value)")) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Section') }}</td>
+                    <td>{{ Form::select('office_section_id',array(''),'',array('class'=>'form-control input-sm','required','id'=>'office_section_id')) }}</td>
+                    <td>{{ Form::label('Depth of SWL (Metre)') }}</td>
+                    <td>{{ Form::text('depth_swl','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Depth of Boring (Metre)') }}</td>
+                    <td>{{ Form::text('depth_boring','',array('class'=>'form-control input-sm','required')) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Size of Boring (Metre)') }}</td>
+                    <td>{{ Form::text('size_boring','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Drilling Date') }}</td>
+                    <td>{{ Form::text('drilling_date','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Commission Date') }}</td>
+                    <td>{{ Form::text('commission_date','',array('class'=>'form-control input-sm','required')) }}</td>
+                </tr>
+                <tr>
+                    <td>{{ Form::label('Discharge (lt/hr)') }}</td>
+                    <td>{{ Form::text('discharge','',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Is Platform Provided') }}</td>
+                    <td>{{ Form::select('platform',array(''=>'','Yes'=>'Yes','No'=>'No'),'',array('class'=>'form-control input-sm','required')) }}</td>
+                    <td>{{ Form::label('Tubewell Status') }}</td>
+                    <td>{{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required','onChange'=>"return status(this.value)")) }}</td>
+                </tr>
+            </tbody>
+        </table>
+
             <div class="form-group">
             	<div class="col-sm-4"></div>
                 <div class="col-sm-8">
