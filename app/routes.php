@@ -19,6 +19,8 @@ Route::get('/', ['as'=>'home',function()
 Route::get('login','SessionsController@create');
 Route::get('logout','SessionsController@destroy');
 
+Route::get('map.getLatlong',['MapController@getLatlong','as'=>'map.getLatlong']);
+
 Route::resource('tubewell', 'TubewellController');
 Route::resource('district', 'DistrictController');
 Route::resource('block', 'BlockController');

@@ -7,13 +7,26 @@
 <script>
 	function initialize()
 	{
-			var mapProp = {
-			  center:new google.maps.LatLng(51.508742,-0.120850),
-			  zoom:5,
-			  mapTypeId:google.maps.MapTypeId.ROADMAP
-			  };
-			var map=new google.maps.Map(document.getElementById("googleMap")
-			  ,mapProp);
+			$.ajax({
+				url: "{{ URL::route('map.getLatlong') }}",
+				type: 'GET',
+				// data: {id: '3'}
+
+				success: function(data){
+				alert(data);
+				}
+			});
+			
+
+			// var mapProp = {
+			//   center:new google.maps.LatLng(51.508742,-0.120850),
+			//   zoom:5,
+			//   mapTypeId:google.maps.MapTypeId.ROADMAP
+			//   };
+
+			// var map=new google.maps.Map(document.getElementById("googleMap")
+			//   ,mapProp);
+
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
@@ -65,12 +78,10 @@
 		
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Locate pump
+				Locate tubewell
 			</div>
 			<div class="panel-body">
-				{{Form::text('lati','',['class'=>'form-control','id'=>'lati','placeholder'=>'Enter Latitude'])}}
-				<p></p>
-				{{Form::text('longi','',['class'=>'form-control','id'=>'longi','placeholder'=>'Enter Longitude'])}}
+				{{Form::text('lati','',['class'=>'form-control','id'=>'lati','placeholder'=>'Enter Tubewell ID'])}}
 				<p></p>
 				<button onclick="diffrnt()" class='form-control btn btn-default'>Display</button>		
 			</div>

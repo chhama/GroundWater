@@ -43,7 +43,7 @@
 </tbody>
 <tfoot>
 <tr>
-	<td colspan="6">{{ $tubewellAll->links() }}</td>
+	<td colspan="9">{{ $tubewellAll->links() }}</td>
 </tr>
 </tfoot>
 </table>

@@ -27,6 +27,7 @@ class TubewellController extends \BaseController {
 	}
 
 
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -115,7 +116,7 @@ class TubewellController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		
 	}
 
 
@@ -215,6 +216,8 @@ class TubewellController extends \BaseController {
 		Tubewell::destroy($id);
 		return Redirect::route('tubewell.index');
 	}
+
+	
 
 	public function block(){
 		$id = Input::get('id');
