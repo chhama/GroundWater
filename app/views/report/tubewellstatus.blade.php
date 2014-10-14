@@ -5,11 +5,24 @@
 <div class="panel panel-default">
 <div class="panel-heading">
     <h5><strong>REPORTS</strong></h5>
-    {{Form::open(array('url'=>route('report.filtertubewell'), 'method'=>'get', 'id'=>'search_report'))}}
-      <div class="form-group col-md-3">
-        <div class="row">
-          {{Form::select('report', $filter, Input::get('report'), array('class' => 'dropdown input-sm', 'id' => 'nos_tubewell','onChange'=>"return filterTubewell(this.value)"))}}
+    {{Form::open(array('url'=>route('report.tubewellstatus'), 'method'=>'get', 'id'=>'search_report','class'=>'form-inline'))}}
+      <div class="form-group">
+        <div class="col-sm-4">{{ Form::label('From') }}</div>
+        <div class="col-sm-8">
+          {{ Form::text('date1',null,array('class'=>'form-control input-sm'),'required') }}
         </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-4">{{ Form::label('To') }}</div>
+        <div class="col-sm-8">
+          {{ Form::text('date2',null,array('class'=>'form-control input-sm','required')) }}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-4"></div>
+          <div class="col-sm-8">
+           {{ Form::submit('Search',array('class'=>'btn btn-success btn-sm')) }}
+          </div>
       </div>
     {{Form::close()}}
 </div>
