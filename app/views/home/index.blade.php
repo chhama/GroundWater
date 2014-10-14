@@ -7,60 +7,85 @@
 <script>
 	function initialize()
 	{
-			$.ajax({
-				url: "{{ URL::route('map.getLatlong') }}",
-				type: 'GET',
-				// data: {id: '3'}
+		
+			var mapProp = {
+			 	center:new google.maps.LatLng(23.727107,92.7176389),
+			  	zoom:5,
+			  	mapTypeId:google.maps.MapTypeId.ROADMAP
+			};
 
-				success: function(data){
-				alert(data);
-				}
-			});
-			
-
-			// var mapProp = {
-			//   center:new google.maps.LatLng(51.508742,-0.120850),
-			//   zoom:5,
-			//   mapTypeId:google.maps.MapTypeId.ROADMAP
-			//   };
-
-			// var map=new google.maps.Map(document.getElementById("googleMap")
-			//   ,mapProp);
+			var map=new google.maps.Map(document.getElementById("googleMap")
+			  ,mapProp);
 
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 
-	function diffrnt()
+	function diffrnt(data)
 	{
-	        myCenter=  new google.maps.LatLng(document.getElementById('lati').value,document.getElementById('longi').value);
 
-			var mapProp = {
-			center:myCenter,
-			zoom:20,
-			mapTypeId:google.maps.MapTypeId.SATELLITE
-	};
+			$.ajax({
+				url: "{{ URL::route('map.getLatlong') }}",
+				type: 'GET',
+				 data: id = 'data',
+				 dataType: 'json',
+				success: function(data){
+					// data=parseJSON(data);
+			        myCenter=  new google.maps.LatLng(data.latitude,data.longitude);
+			        alert(data.latitude);
+					console.log(data.latitude);
+					var mapProp = {
+						center:myCenter,
+						zoom:20,
+						mapTypeId:google.maps.MapTypeId.SATELLITE
+					};
 
 
 
+					var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+					var marker=new google.maps.Marker({
+					        position:myCenter,
+					});
+					  
+					marker.setMap(map);
+
+					var infowindow = new google.maps.InfoWindow({
+					        content: "Hello<br>what"
+					});
+
+
+				 	infowindow.open(map,marker);
+						// alert(data);
+				}
+			});
+
+
+	        // myCenter=  new google.maps.LatLng(document.getElementById('lati').value,document.getElementById('longi').value);
+
+	// 		var mapProp = {
+	// 		center:myCenter,
+	// 		zoom:20,
+	// 		mapTypeId:google.maps.MapTypeId.SATELLITE
+	// };
 
 
 
-	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	// var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
-	var marker=new google.maps.Marker({
-	        position:myCenter,
-	});
+	// var marker=new google.maps.Marker({
+	//         position:myCenter,
+	// });
 	  
-	marker.setMap(map);
+	// marker.setMap(map);
 
-	var infowindow = new google.maps.InfoWindow({
-	        content: "Hello<br>what"
-	});
+	// var infowindow = new google.maps.InfoWindow({
+	//         content: "Hello<br>what"
+	// });
 
 
- 	infowindow.open(map,marker);
+ // 	infowindow.open(map,marker);
 
 }
 
@@ -81,9 +106,18 @@
 				Locate tubewell
 			</div>
 			<div class="panel-body">
-				{{Form::text('lati','',['class'=>'form-control','id'=>'lati','placeholder'=>'Enter Tubewell ID'])}}
+			<?php  
+		$lat=Tubewell::where('tubewell_code','=',1)->select('latitude')->first();
+			$longi=Tubewell::where('tubewell_code','=',1)->select('longitude')->first();
+
+			$arrvalue=array($lat,$longi);
+			
+			echo json_encode($arrvalue);
+?>
+
+				{{Form::text('tubewell_id','',['class'=>'form-control','id'=>'tubewell_id','placeholder'=>'Enter Tubewell ID'])}}
 				<p></p>
-				<button onclick="diffrnt()" class='form-control btn btn-default'>Display</button>		
+				<button onclick="diffrnt(tubewell_id.value)" class='form-control btn btn-default'>Display</button>		
 			</div>
 		</div>
 		
