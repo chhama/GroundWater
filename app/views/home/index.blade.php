@@ -37,7 +37,7 @@
 					//console.log(data.latitude);
 					var mapProp = {
 						center:myCenter,
-						zoom:20,
+						zoom:18,
 						mapTypeId:google.maps.MapTypeId.SATELLITE
 					};
 
