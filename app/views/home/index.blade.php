@@ -32,9 +32,11 @@
 				 dataType: 'json',
 				success: function(data){
 					// data=parseJSON(data);
-			        myCenter=  new google.maps.LatLng(data.latitude,data.longitude);
-			        alert(data.latitude);
-					console.log(data.latitude);
+					alert(data.latitude;
+					console.log(data.latitude;
+
+			        myCenter=  new google.maps.LatLng(data.latitude.value,data.longitude.value);
+			        
 					var mapProp = {
 						center:myCenter,
 						zoom:20,
