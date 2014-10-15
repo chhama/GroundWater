@@ -24,19 +24,17 @@
 
 	function diffrnt(data)
 	{
-
+		// GET http://dev.groundwater/map/%22+data+%22/getLatlong 500 (Internal Server Error) 
 			$.ajax({
-				url: "{{ URL::route('map.getLatlong') }}",
+				url: '	/map/' + data + '/getLatlong',// "{{ URL::route('map.getLatlong',array('id'=>'"+data+"')) }}",
 				type: 'GET',
-				 data: id = 'data',
-				 dataType: 'json',
+				 data: {'id' : data},
+				 type: 'GET',
 				success: function(data){
-					// data=parseJSON(data);
-					alert(data.latitude;
-					console.log(data.latitude;
-
-			        myCenter=  new google.maps.LatLng(data.latitude.value,data.longitude.value);
+					var data=JSON.parse(data);
 			        
+			        myCenter=  new google.maps.LatLng(data[0],data[1]);
+					//console.log(data.latitude);
 					var mapProp = {
 						center:myCenter,
 						zoom:20,
@@ -108,18 +106,9 @@
 				Locate tubewell
 			</div>
 			<div class="panel-body">
-			<?php  
-		$lat=Tubewell::where('tubewell_code','=',1)->select('latitude')->first();
-			$longi=Tubewell::where('tubewell_code','=',1)->select('longitude')->first();
-
-			$arrvalue=array($lat,$longi);
-			
-			echo json_encode($arrvalue);
-?>
-
 				{{Form::text('tubewell_id','',['class'=>'form-control','id'=>'tubewell_id','placeholder'=>'Enter Tubewell ID'])}}
 				<p></p>
-				<button onclick="diffrnt(tubewell_id.value)" class='form-control btn btn-default'>Display</button>		
+				<button onclick="diffrnt(document.getElementById('tubewell_id').value)" class='form-control btn btn-default'>Display</button>		
 			</div>
 		</div>
 		

@@ -1,15 +1,14 @@
 <?php  
 
 	class MapController extends \BaseController {
-		public function getLatlong($id)
+		public function getLatlong()
 		{
+			$id = Input::get('id');
+			$lat=Tubewell::where('tubewell_code','=',$id)->select('latitude','longitude')->first();
+			/*$longi=Tubewell::where('tubewell_code','=',$id)->select('longitude')->first();
 
-
-			$lati= Tubewell::where('tubewell_code','=',1)->select('latitude')->first()->toArray();
-			$longi=Tubewell::where('tubewell_code','=',1)->select('latitude')->first();
-
-			$arrvalue=array($lati,$longi);
-			// $arrstd=array_map('utf8_encode',$arrvalue);
+			*/
+			$arrvalue=array($lat->latitude,$lat->longitude);
 			echo json_encode($arrvalue);
 		}
 	}
