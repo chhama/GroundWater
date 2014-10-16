@@ -31,13 +31,20 @@
 				 data: {'id' : data},
 				 type: 'GET',
 				success: function(data){
+
+					$('#tubewell_info').html("<table cellpadding=5 class='table table-striped' style='width:200px'><tr><td>ph</td><td>"
+					        +data[2]+"</tr><tr><td>Colour</td><td>"
+					        +data[3]+"</td></tr><tr><td>Odour</td><td>"
+					        +data[4]+"</td></tr><tr><td>Taste</td><td>"
+					        +data[5]+"</td></tr></table>");
+
 					var data=JSON.parse(data);
-			        
+			        // alert(data);
 			        myCenter=  new google.maps.LatLng(data[0],data[1]);
 					//console.log(data.latitude);
 					var mapProp = {
 						center:myCenter,
-						zoom:20,
+						zoom:17,
 						mapTypeId:google.maps.MapTypeId.SATELLITE
 					};
 
@@ -52,8 +59,15 @@
 					marker.setMap(map);
 
 					var infowindow = new google.maps.InfoWindow({
-					        content: "Hello<br>what"
-					});
+					        content: "<table cellpadding=5 class='table table-striped' style='width:200px'><tr><td>ph</td><td>"
+					        +data[2]+"</tr><tr><td>Colour</td><td>"
+					        +data[3]+"</td></tr><tr><td>Odour</td><td>"
+					        +data[4]+"</td></tr><tr><td>Taste</td><td>"
+					        +data[5]+"</td></tr></table>"
+
+					        				
+
+					    });
 
 
 				 	infowindow.open(map,marker);
@@ -113,6 +127,11 @@
 		</div>
 		
 
+	</div>
+	<div class="col-md-9"></div>
+
+	<div class="col-md-3" id='tubewell_info'>
+		
 	</div>
 
 
