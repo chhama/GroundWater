@@ -1,16 +1,15 @@
-<div class="row">
-	<div class="form-group">
-	    <div class="col-sm-4">{{ Form::label('Defunction Date') }}</div>
-	    <div class="col-sm-8">
-	        {{ Form::text('well_status_date',null,array('class'=>'form-control input-sm','required')) }}
-	    </div>
-	</div>
-</div>
-<div class="row">
-	<div class="form-group">
-	    <div class="col-sm-4">{{ Form::label('Reason') }}</div>
-	    <div class="col-sm-8">
-	        {{ Form::textarea('well_status_note',null,array('class'=>'form-control input-sm')) }}
-	    </div>
-	</div>
-</div>
+<table class="table table-hover">
+	<thead>
+	  
+	</thead>
+	<tbody>
+	    <tr>
+	        <td>{{ Form::label('Defunct Date') }}</td>
+	        <td>{{ Form::text('well_status_date',null,array('class'=>'form-control input-sm','required','style'=>'width:100%')) }}</td>
+	        <td>{{ Form::label('Reason') }}</td>
+	        <td>{{ Form::textarea('well_status_note',null,array('class'=>'form-control input-sm','style'=>'width:100%','rows'=>'3')) }}</td>
+	        <td>&nbsp;</td>
+	        <td>&nbsp;</td>
+	    </tr>
+	</tbody>
+</table>
