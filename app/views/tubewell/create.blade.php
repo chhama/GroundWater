@@ -74,7 +74,7 @@
                     <td>{{ Form::label('Is Platform Provided') }}</td>
                     <td>{{ Form::select('platform',array(''=>'','Yes'=>'Yes','No'=>'No'),'',array('class'=>'form-control input-sm','required')) }}</td>
                     <td>{{ Form::label('Tubewell Status') }}</td>
-                    <td>{{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunction'=>'Defunction'),'',array('class'=>'form-control input-sm','required','onChange'=>"return status(this.value)")) }}</td>
+                    <td>{{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunct'=>'Defunct'),'',array('class'=>'form-control input-sm','required','onChange'=>"return status(this.value)")) }}</td>
                 </tr>
             </tbody>
         </table>

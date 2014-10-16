@@ -41,14 +41,31 @@ class LithologiesController extends \BaseController {
 	 */
 	public function store()
 	{
-		$lithology = new Lithologies();
-		$lithology->tubewell_id		= Input::get('tubewell_id');
-		$lithology->depth_from		= Input::get('depth_from');
-		$lithology->depth_to		= Input::get('depth_to');
-		$lithology->soil_class		= Input::get('soil_class');
-		$lithology->save();
+		$lithology = new Lithologies;
+		$rules = array(
+				'tubewell_id' => 'required',
+				'depth_from' => 'required',
+				'depth_to' => 'required',
+				'soil_class' => 'required'
+			);
 
-		return Redirect::route('lithology.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('lithology.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$lithology = new Lithologies();
+			$lithology->tubewell_id		= Input::get('tubewell_id');
+			$lithology->depth_from		= Input::get('depth_from');
+			$lithology->depth_to		= Input::get('depth_to');
+			$lithology->soil_class		= Input::get('soil_class');
+			$lithology->save();
+
+			return Redirect::route('lithology.index');
+		}
 
 	}
 
@@ -92,15 +109,31 @@ class LithologiesController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$lithology = new Lithologies;
+		$rules = array(
+				'tubewell_id' => 'required',
+				'depth_from' => 'required',
+				'depth_to' => 'required',
+				'soil_class' => 'required'
+			);
 
-		$lithology = Lithologies::find($id);
-		$lithology->tubewell_id		= Input::get('tubewell_id');
-		$lithology->depth_from		= Input::get('depth_from');
-		$lithology->depth_to		= Input::get('depth_to');
-		$lithology->soil_class		= Input::get('soil_class');
-		$lithology->save();
+		$validator = Validator::make(Input::all(), $rules);
 
-		return Redirect::route('lithology.edit',array($id));
+		if ($validator->fails()) {
+			return Redirect::route('lithology.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$lithology = Lithologies::find($id);
+			$lithology->tubewell_id		= Input::get('tubewell_id');
+			$lithology->depth_from		= Input::get('depth_from');
+			$lithology->depth_to		= Input::get('depth_to');
+			$lithology->soil_class		= Input::get('soil_class');
+			$lithology->save();
+
+			return Redirect::route('lithology.edit',array($id));
+		}
 
 	}
 

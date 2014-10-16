@@ -51,6 +51,9 @@
             	<div class="col-sm-4">{{ Form::label('Sub Division') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('name','',array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('name'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('name')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">

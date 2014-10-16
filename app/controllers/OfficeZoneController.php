@@ -41,11 +41,25 @@ class OfficeZoneController extends \BaseController {
 	 */
 	public function store()
 	{
-		$officeZone = new OfficeZone();
-		$officeZone->name	= Input::get('name');
-		$officeZone->save();
+		$officezone = new OfficeZone;
+		$rules = array(
+				'name' => 'required|unique:' . $officezone->getTable() . ',name'
+			);
 
-		return Redirect::route('officezone.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('officezone.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeZone = new OfficeZone();
+			$officeZone->name	= Input::get('name');
+			$officeZone->save();
+
+			return Redirect::route('officezone.index');
+		}
 
 	}
 
@@ -89,12 +103,25 @@ class OfficeZoneController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$officezone = new OfficeZone;
+		$rules = array(
+				'name' => 'required|unique:' . $officezone->getTable() . ',name,' . $id
+			);
 
-		$officeZone = OfficeZone::find($id);
-		$officeZone->name	= Input::get('name');
-		$officeZone->save();
+		$validator = Validator::make(Input::all(), $rules);
 
-		return Redirect::route('officezone.edit',array($id));
+		if ($validator->fails()) {
+			return Redirect::route('officezone.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeZone = OfficeZone::find($id);
+			$officeZone->name	= Input::get('name');
+			$officeZone->save();
+
+			return Redirect::route('officezone.edit',array($id));
+		}
 
 	}
 

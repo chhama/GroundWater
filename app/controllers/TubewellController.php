@@ -98,7 +98,7 @@ class TubewellController extends \BaseController {
 			$tubewell->well_status_repaired_date = Input::get('well_status_repaired_date');
 			$tubewell->well_status_repaired_by = Input::get('well_status_repaired_by');
 		}
-		if(Input::get('well_status') == 'Defunction') {
+		if(Input::get('well_status') == 'Defunct') {
 			$tubewell->well_status_date = Input::get('well_status_date');
 			$tubewell->well_status_note = Input::get('well_status_note');
 		}
@@ -195,7 +195,7 @@ class TubewellController extends \BaseController {
 			$tubewell->well_status_repaired_date = Input::get('well_status_repaired_date');
 			$tubewell->well_status_repaired_by = Input::get('well_status_repaired_by');
 		}
-		if(Input::get('well_status') == 'Defunction') {
+		if(Input::get('well_status') == 'Defunct') {
 			$tubewell->well_status_date = Input::get('well_status_date');
 			$tubewell->well_status_note = Input::get('well_status_note');
 		}
@@ -278,7 +278,7 @@ class TubewellController extends \BaseController {
 		if($id == 'Damage') {
 			return View::make('tubewell.damage');
 		}
-		if($id == 'Defunction'){
+		if($id == 'Defunct'){
 			return View::make('tubewell.defunction');
 		}
 	}

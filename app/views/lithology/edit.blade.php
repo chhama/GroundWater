@@ -53,24 +53,36 @@
             	<div class="col-sm-4">{{ Form::label('Tubewell ID') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('tubewell_id',null,array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('tubewell_id'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('tubewell_id')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
             	<div class="col-sm-4">{{ Form::label('Depth From') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('depth_from',null,array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('depth_from'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('depth_from')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Depth To') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('depth_to',null,array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('depth_to'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('depth_to')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Soil Class') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('soil_class',null,array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('soil_class'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('soil_class')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">

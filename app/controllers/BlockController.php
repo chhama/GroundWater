@@ -44,13 +44,27 @@ class BlockController extends \BaseController {
 	 */
 	public function store()
 	{
-		$block = new Block();
-		$block->name		= Input::get('name');
-		$block->code		= Input::get('code');
-		$block->district_id	= Input::get('district_id');
-		$block->save();
+		$block = new Block;
+		$rules = array(
+				'name' => 'required|unique:' . $block->getTable() . ',name',
+				'code' => 'required|numeric|unique:' . $block->getTable() . ',code'
+			);
 
-		return Redirect::route('block.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('block.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$block = new Block();
+			$block->name		= Input::get('name');
+			$block->code		= Input::get('code');
+			$block->district_id	= Input::get('district_id');
+			$block->save();
+			return Redirect::route('block.index');
+		}
 	}
 
 
@@ -95,13 +109,28 @@ class BlockController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$block = Block::find($id);
-		$block->name		= Input::get('name');
-		$block->code		= Input::get('code');
-		$block->district_id	= Input::get('district_id');
-		$block->save();
+		$block = new Block;
+		$rules = array(
+				'name' => 'required|unique:' . $block->getTable() . ',name,' . $id,
+				'code' => 'required|numeric|unique:' . $block->getTable() . ',code,' . $id
+			);
 
-		return Redirect::route('block.edit',$block->id);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('block.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$block = Block::find($id);
+			$block->name		= Input::get('name');
+			$block->code		= Input::get('code');
+			$block->district_id	= Input::get('district_id');
+			$block->save();
+
+			return Redirect::route('block.edit',$id);
+		}
 	}
 
 

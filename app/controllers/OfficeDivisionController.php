@@ -43,14 +43,28 @@ class OfficeDivisionController extends \BaseController {
 	 */
 	public function store()
 	{
-		$officeCircle 		= OfficeCircle::find(Input::get('office_circle_id')); 
-		$officeDivision 	= new OfficeDivision();
-		$officeDivision->name				= Input::get('name');
-		$officeDivision->office_zone_id		= $officeCircle->office_zone_id;
-		$officeDivision->office_circle_id	= Input::get('office_circle_id');
-		$officeDivision->save();
+		$officedivision = new OfficeDivision;
+		$rules = array(
+				'name' => 'required|unique:' . $officedivision->getTable() . ',name'
+			);
 
-		return Redirect::route('officedivision.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('officedivision.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeCircle 		= OfficeCircle::find(Input::get('office_circle_id')); 
+			$officeDivision 	= new OfficeDivision();
+			$officeDivision->name				= Input::get('name');
+			$officeDivision->office_zone_id		= $officeCircle->office_zone_id;
+			$officeDivision->office_circle_id	= Input::get('office_circle_id');
+			$officeDivision->save();
+
+			return Redirect::route('officedivision.index');
+		}
 	}
 
 
@@ -95,14 +109,28 @@ class OfficeDivisionController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$officeCircle 		= OfficeCircle::find(Input::get('block_id')); 
-		$officeDivision 	= OfficeDivision::find($id);
-		$officeDivision->name				= Input::get('name');
-		$officeDivision->office_zone_id		= $officeCircle->office_zone_id;
-		$officeDivision->office_circle_id	= Input::get('office_circle_id');
-		$officeDivision->save();
+		$officedivision = new OfficeDivision;
+		$rules = array(
+				'name' => 'required|unique:' . $officedivision->getTable() . ',name'
+			);
 
-		return Redirect::route('officedivision.edit', $officedivision->id);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('officedivision.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeCircle 		= OfficeCircle::find(Input::get('block_id')); 
+			$officeDivision 	= OfficeDivision::find($id);
+			$officeDivision->name				= Input::get('name');
+			$officeDivision->office_zone_id		= $officeCircle->office_zone_id;
+			$officeDivision->office_circle_id	= Input::get('office_circle_id');
+			$officeDivision->save();
+
+			return Redirect::route('officedivision.edit', $officedivision->id);
+		}
 	}
 
 

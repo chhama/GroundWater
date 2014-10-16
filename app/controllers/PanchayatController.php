@@ -44,15 +44,30 @@ class PanchayatController extends \BaseController {
 	 */
 	public function store()
 	{
-		$block = Block::find(Input::get('block_id')); 
-		$panchayat = new Panchayat();
-		$panchayat->name		= Input::get('name');
-		$panchayat->code		= Input::get('code');
-		$panchayat->district_id	= $block->district_id;
-		$panchayat->block_id	= Input::get('block_id');
-		$panchayat->save();
+		$panchayat = new Panchayat;
+		$rules = array(
+				'name' => 'required',
+				'code' => 'required|numeric|unique:' . $panchayat->getTable() . ',code'
+			);
 
-		return Redirect::route('panchayat.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('panchayat.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$block = Block::find(Input::get('block_id')); 
+			$panchayat = new Panchayat();
+			$panchayat->name		= Input::get('name');
+			$panchayat->code		= Input::get('code');
+			$panchayat->district_id	= $block->district_id;
+			$panchayat->block_id	= Input::get('block_id');
+			$panchayat->save();
+
+			return Redirect::route('panchayat.index');
+		}
 	}
 
 
@@ -98,15 +113,30 @@ class PanchayatController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$block = Block::find(Input::get('block_id')); 
-		$panchayat 				= Panchayat::find($id);
-		$panchayat->name		= Input::get('name');
-		$panchayat->code		= Input::get('code');
-		$panchayat->district_id	= $block->district_id;
-		$panchayat->block_id	= Input::get('block_id');
-		$panchayat->save();
+		$panchayat = new Panchayat;
+		$rules = array(
+				'name' => 'required',
+				'code' => 'required|numeric|unique:' . $panchayat->getTable() . ',code,' . $id
+			);
 
-		return Redirect::route('panchayat.edit',$panchayat->id);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('panchayat.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$block = Block::find(Input::get('block_id')); 
+			$panchayat 				= Panchayat::find($id);
+			$panchayat->name		= Input::get('name');
+			$panchayat->code		= Input::get('code');
+			$panchayat->district_id	= $block->district_id;
+			$panchayat->block_id	= Input::get('block_id');
+			$panchayat->save();
+
+			return Redirect::route('panchayat.edit',$panchayat->id);
+		}
 	}
 
 

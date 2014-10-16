@@ -43,16 +43,30 @@ class OfficeSubDivisionController extends \BaseController {
 	 */
 	public function store()
 	{
-		$officeDivision 		= OfficeDivision::find(Input::get('office_division_id'));
+		$officesubdivision = new OfficeSubDivision;
+		$rules = array(
+				'name' => 'required|unique:' . $officesubdivision->getTable() . ',name'
+			);
 
-		$officeSubDivision 	= new OfficeSubDivision();
-		$officeSubDivision->name				= Input::get('name');
-		$officeSubDivision->office_zone_id		= $officeDivision->office_zone_id;
-		$officeSubDivision->office_circle_id	= $officeDivision->office_circle_id;
-		$officeSubDivision->office_division_id	= Input::get('office_division_id');
-		$officeSubDivision->save();
+		$validator = Validator::make(Input::all(), $rules);
 
-		return Redirect::route('officesubdivision.index');
+		if ($validator->fails()) {
+			return Redirect::route('officesubdivision.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeDivision 		= OfficeDivision::find(Input::get('office_division_id'));
+
+			$officeSubDivision 	= new OfficeSubDivision();
+			$officeSubDivision->name				= Input::get('name');
+			$officeSubDivision->office_zone_id		= $officeDivision->office_zone_id;
+			$officeSubDivision->office_circle_id	= $officeDivision->office_circle_id;
+			$officeSubDivision->office_division_id	= Input::get('office_division_id');
+			$officeSubDivision->save();
+
+			return Redirect::route('officesubdivision.index');
+		}
 	}
 
 
@@ -97,15 +111,29 @@ class OfficeSubDivisionController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$officeDivision 		= OfficeDivision::find(Input::get('office_division_id'));
-		$officeSubDivision 		= OfficeSubDivision::find($id);
-		$officeSubDivision->name				= Input::get('name');
-		$officeSubDivision->office_zone_id		= $officeDivision->office_zone_id;
-		$officeSubDivision->office_circle_id	= $officeDivision->office_circle_id;
-		$officeSubDivision->office_division_id	= Input::get('office_division_id');
-		$officeSubDivision->save();
+		$officesubdivision = new OfficeSubDivision;
+		$rules = array(
+				'name' => 'required|unique:' . $officesubdivision->getTable() . ',name,' . $id
+			);
 
-		return Redirect::route('officesubdivision.edit', $officeSubDivision->id);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('officesubdivision.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeDivision 		= OfficeDivision::find(Input::get('office_division_id'));
+			$officeSubDivision 		= OfficeSubDivision::find($id);
+			$officeSubDivision->name				= Input::get('name');
+			$officeSubDivision->office_zone_id		= $officeDivision->office_zone_id;
+			$officeSubDivision->office_circle_id	= $officeDivision->office_circle_id;
+			$officeSubDivision->office_division_id	= Input::get('office_division_id');
+			$officeSubDivision->save();
+
+			return Redirect::route('officesubdivision.edit', $officeSubDivision->id);
+		}
 	}
 
 

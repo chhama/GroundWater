@@ -42,12 +42,27 @@ class DistrictController extends \BaseController {
 	 */
 	public function store()
 	{
-		$district = new District();
-		$district->name	= Input::get('name');
-		$district->code	= Input::get('code');
-		$district->save();
+		$district = new District;
+		$rules = array(
+				'name' => 'required|unique:' . $district->getTable() . ',name',
+				'code' => 'required|numeric|unique:' . $district->getTable() . ',code'
+			);
 
-		return Redirect::route('district.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('district.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$district = new District();
+			$district->name	= Input::get('name');
+			$district->code	= Input::get('code');
+			$district->save();
+			return Redirect::route('district.index');
+		}
+
 
 	}
 
@@ -91,13 +106,26 @@ class DistrictController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$district = new District;
+		$rules = array(
+				'name' => 'required|unique:' . $district->getTable() . ',name,' . $id,
+				'code' => 'required|numeric|unique:' . $district->getTable() . ',code,' . $id
+			);
 
-		$district = District::find($id);
-		$district->name	= Input::get('name');
-		$district->code	= Input::get('code');
-		$district->save();
+		$validator = Validator::make(Input::all(), $rules);
 
-		return Redirect::route('district.edit',array($id));
+		if ($validator->fails()) {
+			return Redirect::route('district.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$district = District::find($id);
+			$district->name	= Input::get('name');
+			$district->code	= Input::get('code');
+			$district->save();
+			return Redirect::route('district.edit',array($id));
+		}
 
 	}
 

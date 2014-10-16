@@ -43,12 +43,26 @@ class OfficeCircleController extends \BaseController {
 	 */
 	public function store()
 	{
-		$officeCircle = new OfficeCircle();
-		$officeCircle->name				= Input::get('name');
-		$officeCircle->office_zone_id	= Input::get('office_zone_id');
-		$officeCircle->save();
+		$officecircle = new OfficeCircle;
+		$rules = array(
+				'name' => 'required|unique:' . $officecircle->getTable() . ',name'
+			);
 
-		return Redirect::route('officecircle.index');
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('officecircle.index')
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeCircle = new OfficeCircle();
+			$officeCircle->name				= Input::get('name');
+			$officeCircle->office_zone_id	= Input::get('office_zone_id');
+			$officeCircle->save();
+
+			return Redirect::route('officecircle.index');
+		}
 	}
 
 
@@ -93,12 +107,26 @@ class OfficeCircleController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		$officeCircle 				= OfficeCircle::find($id);
-		$officeCircle->name	 		= Input::get('name');
-		$officeCircle->office_zone_id	= Input::get('office_zone_id');
-		$officeCircle->save();
+		$officecircle = new OfficeCircle;
+		$rules = array(
+				'name' => 'required|unique:' . $officecircle->getTable() . ',name,' . $id
+			);
 
-		return Redirect::route('officecircle.edit',$officeCircle->id);
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::route('officecircle.edit',$id)
+				->withErrors($validator)
+				->withInput(Input::all());
+		}
+		else {
+			$officeCircle 				= OfficeCircle::find($id);
+			$officeCircle->name	 		= Input::get('name');
+			$officeCircle->office_zone_id	= Input::get('office_zone_id');
+			$officeCircle->save();
+
+			return Redirect::route('officecircle.edit',$officeCircle->id);
+		}
 	}
 
 

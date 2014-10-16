@@ -51,12 +51,18 @@
             	<div class="col-sm-4">{{ Form::label('Block') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('name','',array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('name'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('name')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Code') }}</div>
                 <div class="col-sm-8">
                     {{ Form::text('code','',array('class'=>'form-control input-sm','required')) }}
+                    @if($errors->has('code'))
+                    <p class="help-block"><span class="text-danger">{{$errors->first('code')}}</span></p>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
