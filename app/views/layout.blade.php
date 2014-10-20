@@ -112,11 +112,11 @@
 <!-- <div class="jumbotron">
     <h1 class="text-center">Hello World</h1>
 </div> -->
- @yield('container')
 
     <!-- jQuery -->
     {{ HTML::Script('js/jquery.js') }}
     <!-- Bootstrap JavaScript -->
     {{ HTML::Script('js/bootstrap.js') }}
+ @yield('container')
   </body>
 </html>

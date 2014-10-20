@@ -90,7 +90,7 @@
         </div>
     </div>
 </div>
-@stop
+
 <script>
     function blockByDist(block){
         $.ajax({
@@ -163,3 +163,4 @@
         })
     }
 </script>
+@stop
