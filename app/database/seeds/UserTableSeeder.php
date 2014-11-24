@@ -6,6 +6,7 @@
 			User::create(array(
 					'username' => 'admin',
 					'usertype' => 'administrator',
+					'name' => 'Admin guy',
 					'remember_token' => '',
 					'password' => Hash::make('pass')
 				));

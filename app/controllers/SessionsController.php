@@ -38,7 +38,7 @@ class SessionsController extends \BaseController {
 
 		if ($attempt) return Redirect::intended('/');
 		else
-			return Redirect::to('/')->with(['flash_message'=>'Invalid Username or Password','msgtype'=>'danger'])->withInput();
+			return Redirect::to('returns.create')->with(['flash_message'=>'Invalid Username or Password','msgtype'=>'danger'])->withInput();
 	}
 
 

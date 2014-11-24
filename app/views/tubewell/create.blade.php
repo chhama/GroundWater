@@ -1,4 +1,16 @@
 @extends('layout')
+   
+@section('extrahead')
+<script>
+    $(document).ready(function(){
+        $('#drilldate').datetimepicker();
+        $('#commdate').datetimepicker();
+
+    });
+</script>
+
+@stop
+
 
 @section('container')
 <div class="col-md-12">
@@ -64,9 +76,19 @@
                     <td>{{ Form::label('Size of Boring (Metre)') }}</td>
                     <td>{{ Form::text('size_boring','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Drilling Date') }}</td>
-                    <td>{{ Form::text('drilling_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>
+                            <div class="input-group">
+                                {{ Form::text('drilling_date',date('d/m/Y'),array('class'=>'form-control','style'=>'width:100%','id'=>'drilldate','required'))}}
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            </div>                
+                    </td>
                     <td>{{ Form::label('Commission Date') }}</td>
-                    <td>{{ Form::text('commission_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>
+                        <div class="input-group">
+                            {{ Form::text('commission_date',date('d/m/Y'),array('class'=>'form-control','style'=>'width:100%','id'=>'commdate','required')) }}
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </td>    
                 </tr>
                 <tr>
                     <td>{{ Form::label('Discharge (lt/hr)') }}</td>
@@ -83,7 +105,9 @@
             <div class="form-group">
             	<div class="col-sm-4"></div>
                 <div class="col-sm-8">
+
             	   {{ Form::submit('Save',array('class'=>'btn btn-success btn-sm')) }}
+                
                 </div>
             </div>
         {{ Form::close() }}
@@ -91,7 +115,12 @@
     </div>
 </div>
 @stop
-<script>
+
+<script language='javascript'>
+
+
+
+
     function blockByDist(block){
         $.ajax({
             url: "{{ URL::route('tubewell.block')}}",
@@ -162,4 +191,15 @@
             $('#status').html(data);
         })
     }
+    // $(function(){
+    //         $jquery('#dpbtn').click(function(){
+    //             $('#datetimepicker').val(33);
+    //         });
+
+    //     });
+
+
+
+
+// $('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
 </script>

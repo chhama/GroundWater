@@ -11,7 +11,7 @@
 	</div>
 	<div class="panel-body">
   	{{Form::open(['route'=>'waterquality.store','class'=>'navbar-form'])}}
-	   	<table class="table table-striped table-hover" width="100%">
+	   	<table class="table table-striped table-hover">
 	   		<thead>
 				  		    
 			</thead>
@@ -96,15 +96,28 @@
 		    		<td>{{Form::Label('','Tested by')}}</td>
 		    <td>{{Form::text('tested_by','',['class'=>'form-control'])}}</td>
 		    		<td>{{Form::Label('','Test date')}}</td>
-		    <td>{{Form::text('test_date','',['class'=>'form-control'])}}</td></tr>
+		    <td>
+	    	<div class="input-group">
+				{{Form::text('test_date',date('Y-m-d'),['class'=>'form-control input-sm','id'=>'datetimepicker'])}}
+		    	<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+		    </div>
+			</td></tr>
 		    
 	   	</tbody>
 	   </table>
 	   {{Form::submit('Submit',['class'=>'form-control btn btn-info pull-right'])}}
 	   {{Form::close()}}
+
 	</div>
 </div>
 
-	
+	 <script language='javascript'>
+
+      
+        $('#datetimepicker').datetimepicker({
+            step: 5
+        });
+
+    </script>
 
 @stop
