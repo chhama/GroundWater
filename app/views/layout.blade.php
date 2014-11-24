@@ -6,15 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PHE Ground Water Management System</title>
 
-  <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
   {{ HTML::Style('css/bootstrap.min.css') }}
-  {{ HTML::Style('/css/jquery.datetimepicker.css') }}
-
-  <!-- jQuery -->
-  {{ HTML::Script('js/jquery.js') }}
-  <!-- Bootstrap JavaScript -->
-  {{ HTML::Script('js/bootstrap.js') }}
-  {{ HTML::Script('/js/jquery.datetimepicker.js') }}
 
   @yield('extrahead')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -119,9 +112,11 @@
 <!-- <div class="jumbotron">
     <h1 class="text-center">Hello World</h1>
 </div> -->
+
+    <!-- jQuery -->
+    {{ HTML::Script('js/jquery.js') }}
+    <!-- Bootstrap JavaScript -->
+    {{ HTML::Script('js/bootstrap.js') }}
  @yield('container')
-
-    
-
   </body>
 </html>
