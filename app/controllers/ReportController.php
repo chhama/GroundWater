@@ -43,11 +43,19 @@ class ReportController extends \BaseController {
 
 	public function listtubewell(){
 		$report 	= Input::get('report');
+		$name		= Input::get('name');
 		$depthFrom	= Input::get('from');
 		$depthTo	= Input::get('to');
 
-		
-		$tubewellAll= Tubewell::orderBy('tubewell_code')->paginate();
+		$tubewellAll= Tubewell::where('delivery_id','=',$name)
+					->where(function($query){
+						if(!empty($from) && !empty($to)){ $query->whereBetween('depth_boring',array($from,$to)); }
+						if(!empty($from) && empty($to)){ $query->whereBetween('depth_boring',array($from,0)); }
+						if(empty($from) && !empty($to)){ $query->whereBetween('depth_boring',array(0,$to)); }
+					})
+					->orderBy('tubewell_code')
+					->paginate();
+
 		$index = $tubewellAll->getPerPage() * ($tubewellAll->getCurrentPage()-1) + 1;
 		return View::make('report.listtubewell')
 						->with(array(
@@ -95,7 +103,7 @@ class ReportController extends \BaseController {
 
 		if($searchValue == 'deliveries'){
 			$reports = Tubewell::join($delivery_table,$delivery_table.'.id','=',$tubewell_table.'.delivery_id')
-								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$delivery_table.'.name AS name'))
+								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$delivery_table.'.name AS name,'.$tubewell_table.'.delivery_id AS deliveryId'))
 								->groupBy($tubewell_table.'.delivery_id')
 								->get();
 		}

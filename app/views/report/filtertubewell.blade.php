@@ -40,7 +40,7 @@
   	<tr bgcolor="">
     	<td>{{$slno}}</td>
     	<td><?php if(isset($report->name)){ echo $report->name; } else { echo 'No. of Tubewell'; } ?>&nbsp;</td>
-    	<td><a href="{{ URL::route('report.listtubewell')}}">{{ $report->countRow }}</a>&nbsp;</td>
+    	<td><a href="{{ URL::route('report.listtubewell',array('report'=>Input::get('report'),'from'=>Input::get('from'),'to'=>Input::get('to'),'name'=>$report->deliveryId))}}">{{ $report->countRow }}</a>&nbsp;</td>
     </tr>
     <?php
       $total = $total + ($report->countRow); 
