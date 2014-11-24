@@ -3,7 +3,7 @@
 @section('container')
 <div class="col-md-12">
 <div class="panel panel-default">
-<div class="panel-heading"><h5><strong>MANAGE TUBEWELL</strong></h5></div>
+<div class="panel-heading"><h5><strong>LIST TUBEWELL</strong></h5></div>
 <div class="panel-body" style="padding:0px;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover" style="margin-bottom:0px;">
 <thead>
@@ -16,7 +16,6 @@
     <th width="121" height="38" align="left">Office</th>
     <th width="121" height="38" align="left">Status</th>
     <th width="121" height="38" align="left">Commissioning Date</th>
-    <th width="121" height="38" class="action text-center">Control</th>
   </tr>
   </thead>
   <tbody>
@@ -31,12 +30,6 @@
     <td height="25" align="left">{{ $tubewell->officeZone->name }}, {{ $tubewell->officeCircle->name }}, {{ $tubewell->officeDivision->name }}, {{ $tubewell->officeSubDivision->name }}, {{ $tubewell->officeSection->name }}&nbsp;</td>
     <td height="25" align="left">{{ $tubewell->well_status }} &nbsp;</td>
     <td height="25" align="left">{{ $tubewell->commission_date }} &nbsp;</td>
-    <td align="left" class="action text-center">
-    	{{Form::open(array('url'=>route('tubewell.destroy', array($tubewell->id)),'method'=>'delete'))}}
-			<a href="{{route('tubewell.edit', array($tubewell->id))}}" class="btn btn-xs btn-success tooltip-top" title="Edit prod"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
-			<button type="submit" onclick="return confirm ('<?php echo _('Are you sure') ?>');" name="id" class="btn btn-xs btn-danger tooltip-top" title="Remove Tubewell" value="{{$tubewell->id}}"><i class="glyphicon glyphicon-trash"></i></button>
-		{{Form::close()}}
-    </td>
     </tr>
     <?php $slno++; ?>
     @endforeach

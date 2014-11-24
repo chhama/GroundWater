@@ -41,6 +41,21 @@ class ReportController extends \BaseController {
 		
 	}
 
+	public function listtubewell(){
+		$report 	= Input::get('report');
+		$depthFrom	= Input::get('from');
+		$depthTo	= Input::get('to');
+
+		
+		$tubewellAll= Tubewell::orderBy('tubewell_code')->paginate();
+		$index = $tubewellAll->getPerPage() * ($tubewellAll->getCurrentPage()-1) + 1;
+		return View::make('report.listtubewell')
+						->with(array(
+							'tubewellAll'	=> $tubewellAll,
+							'index'			=> $index
+						));
+	}
+
 	public function filtertubewell() {
 		$filter = array(
 						'tubewell'		=> 'No of Tubewell',

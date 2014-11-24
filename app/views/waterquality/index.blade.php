@@ -95,7 +95,7 @@
 		    <td>{{Form::text('ecoli','',['class'=>'form-control'])}}</td>
 		    		<td>{{Form::Label('','Tested by')}}</td>
 		    <td>{{Form::text('tested_by','',['class'=>'form-control'])}}</td>
-		    		<td>{{Form::Label('','Test date')}}</td>
+		    		<td>{{Form::Label('','Date of Testing')}}</td>
 		    <td>
 	    	<div class="input-group">
 				{{Form::text('test_date',date('Y-m-d'),['class'=>'form-control input-sm','id'=>'datetimepicker'])}}

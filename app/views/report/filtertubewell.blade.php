@@ -11,6 +11,18 @@
           {{Form::select('report', $filter, Input::get('report'), array('class' => 'dropdown input-sm', 'id' => 'nos_tubewell','onChange'=>"return filterTubewell(this.value)"))}}
         </div>
       </div>
+      <div class="form-group col-md-2">
+        <div class="row">
+          <label>Depth From</label>
+          {{Form::text('from',Input::get('from'), array('class' => 'input-sm', 'id' => 'from','size'=>'10'))}}
+        </div>
+      </div>
+      <div class="form-group col-md-2">
+        <div class="row">
+          <label>Depth To</label>
+          {{Form::text('to',Input::get('to'), array('class' => 'input-sm', 'id' => 'to','size'=>'10'))}}
+        </div>
+      </div>
     {{Form::close()}}
 </div>
 <div class="panel-body" style="padding:0px;">
@@ -28,7 +40,7 @@
   	<tr bgcolor="">
     	<td>{{$slno}}</td>
     	<td><?php if(isset($report->name)){ echo $report->name; } else { echo 'No. of Tubewell'; } ?>&nbsp;</td>
-    	<td>{{ $report->countRow }}&nbsp;</td>
+    	<td><a href="{{ URL::route('report.listtubewell')}}">{{ $report->countRow }}</a>&nbsp;</td>
     </tr>
     <?php
       $total = $total + ($report->countRow); 

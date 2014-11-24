@@ -57,15 +57,15 @@
                     <td>{{ Form::select('office_section_id',array(''),'',array('class'=>'form-control input-sm','style'=>'width:100%','required','id'=>'office_section_id')) }}</td>
                     <td>{{ Form::label('Depth of SWL (Metre)') }}</td>
                     <td>{{ Form::text('depth_swl','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
-                    <td>{{ Form::label('Depth of Boring (Metre)') }}</td>
+                    <td>{{ Form::label('Depth of Borehole (Metre)') }}</td>
                     <td>{{ Form::text('depth_boring','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ Form::label('Size of Boring (Metre)') }}</td>
+                    <td>{{ Form::label('Diameter of Borehole (Metre)') }}</td>
                     <td>{{ Form::text('size_boring','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Drilling Date') }}</td>
                     <td>{{ Form::text('drilling_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
-                    <td>{{ Form::label('Commission Date') }}</td>
+                    <td>{{ Form::label('Commissioning Date') }}</td>
                     <td>{{ Form::text('commission_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                 </tr>
                 <tr>
