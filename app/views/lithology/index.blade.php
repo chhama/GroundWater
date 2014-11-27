@@ -79,7 +79,7 @@
             <div class="form-group">
                 <div class="col-sm-4">{{ Form::label('Soil Class') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::text('soil_class',null,array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('soil_class',$soiltype,'',array('class'=>'form-control input-sm','required')) }}
                     @if($errors->has('soil_class'))
                     <p class="help-block"><span class="text-danger">{{$errors->first('soil_class')}}</span></p>
                     @endif

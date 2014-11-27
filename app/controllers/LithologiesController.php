@@ -14,11 +14,20 @@ class LithologiesController extends \BaseController {
 	 */
 	public function index()
 	{
+		$soiltype = ['Soil Cover'	=> 'Soil Cover',
+					 'Sandstone'	=> 'Sandstone',
+					 'Shale'		=> 'Shale',
+					 'Limestone'	=> 'Limestone',
+					 'Siltstone'	=> 'Siltstone',
+					 'Mud-rock'		=> 'Mud-rock',
+					 'Other'		=> 'Other'
+					];
 		$lithologyAll = Lithologies::orderBy('tubewell_id','asc')->paginate();
 		$index = $lithologyAll->getPerPage() * ($lithologyAll->getCurrentPage()-1) + 1;
 		return View::make('lithology.index')->with(array(
-						'lithologyAll' => $lithologyAll,
-						'index' => $index
+						'lithologyAll' 	=> $lithologyAll,
+						'index' 		=> $index,
+						'soiltype'		=> $soiltype
 					));	
 	}
 
@@ -90,13 +99,22 @@ class LithologiesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		$soiltype = ['Soil Cover'	=> 'Soil Cover',
+					 'Sandstone'	=> 'Sandstone',
+					 'Shale'		=> 'Shale',
+					 'Limestone'	=> 'Limestone',
+					 'Siltstone'	=> 'Siltstone',
+					 'Mud-rock'		=> 'Mud-rock',
+					 'Other'		=> 'Other'
+					];
 		$lithologyById = Lithologies::find($id);
 		$lithologyAll = Lithologies::orderBy('tubewell_id','asc')->paginate();
 		$index = $lithologyAll->getPerPage() * ($lithologyAll->getCurrentPage()-1) + 1;
 		return View::make('lithology.edit')->with(array(
-						'lithologyAll' => $lithologyAll,
+						'lithologyAll'	=> $lithologyAll,
 						'lithologyById' => $lithologyById,
-						'index' => $index
+						'index' 		=> $index,
+						'soiltype'		=> $soiltype
 					));
 	}
 

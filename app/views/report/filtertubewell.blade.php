@@ -13,13 +13,13 @@
       </div>
       <div class="form-group col-md-2">
         <div class="row">
-          <label>Depth From</label>
+          <label><strong>{{$label}} From</strong></label>
           {{Form::text('from',Input::get('from'), array('class' => 'input-sm', 'id' => 'from','size'=>'10'))}}
         </div>
       </div>
       <div class="form-group col-md-2">
         <div class="row">
-          <label>Depth To</label>
+          <label><strong>{{$label}} To</strong></label>
           {{Form::text('to',Input::get('to'), array('class' => 'input-sm', 'id' => 'to','size'=>'10'))}}
         </div>
       </div>
@@ -40,7 +40,7 @@
   	<tr bgcolor="">
     	<td>{{$slno}}</td>
     	<td><?php if(isset($report->name)){ echo $report->name; } else { echo 'No. of Tubewell'; } ?>&nbsp;</td>
-    	<td><a href="{{ URL::route('report.listtubewell',array('report'=>Input::get('report'),'from'=>Input::get('from'),'to'=>Input::get('to'),'name'=>$report->deliveryId))}}">{{ $report->countRow }}</a>&nbsp;</td>
+    	<td><a href="{{ URL::route('report.listtubewell',array('report'=>Input::get('report'),'from'=>Input::get('from'),'to'=>Input::get('to'),'name'=>$report->nameId))}}">{{ $report->countRow }}</a>&nbsp;</td>
     </tr>
     <?php
       $total = $total + ($report->countRow); 
