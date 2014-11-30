@@ -85,6 +85,8 @@ class TubewellController extends \BaseController {
 		$tubewell->depth_swl = Input::get('depth_swl') ;
 		$tubewell->depth_boring = Input::get('depth_boring') ;
 		$tubewell->size_boring = Input::get('size_boring') ;
+		$tubewell->run_hr_rig = Input::get('run_hr_rig') ;
+		$tubewell->run_hr_compressor = Input::get('run_hr_compressor') ;
 		$tubewell->drilling_date = Input::get('drilling_date') ;
 		$tubewell->commission_date = Input::get('commission_date') ;
 		$tubewell->discharge = Input::get('discharge') ;
@@ -184,6 +186,8 @@ class TubewellController extends \BaseController {
 		$tubewell->size_boring = Input::get('size_boring') ;
 		$tubewell->drilling_date = Input::get('drilling_date') ;
 		$tubewell->commission_date = Input::get('commission_date') ;
+		$tubewell->run_hr_rig = Input::get('run_hr_rig') ;
+		$tubewell->run_hr_compressor = Input::get('run_hr_compressor') ;
 		$tubewell->discharge = Input::get('discharge') ;
 		$tubewell->platform = Input::get('platform') ;
 		$tubewell->well_status = Input::get('well_status') ;

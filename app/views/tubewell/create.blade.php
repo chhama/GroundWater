@@ -71,16 +71,24 @@
                 <tr>
                     <td>{{ Form::label('Discharge (lt/hr)') }}</td>
                     <td>{{ Form::text('discharge','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::label('Running Hrs of Rig') }}</td>
+                    <td>{{ Form::text('run_hr_rig','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::label('Running Hrs of Compressor') }}</td>
+                    <td>{{ Form::text('run_hr_compressor','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                </tr>
+                <tr>
                     <td>{{ Form::label('Is Platform Provided') }}</td>
                     <td>{{ Form::select('platform',array(''=>'','Yes'=>'Yes','No'=>'No'),'',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Tubewell Status') }}</td>
                     <td>{{ Form::select('well_status',array(''=>'','In Use'=>'In Use','Damage'=>'Damage','Defunct'=>'Defunct'),'',array('class'=>'form-control input-sm','style'=>'width:100%','required','onChange'=>"return status(this.value)")) }}</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
                 </tr>
             </tbody>
         </table>
         <div id="status"></div>
 
-            <div class="form-group">
+            <div class="form-group pull-right">
             	<div class="col-sm-4"></div>
                 <div class="col-sm-8">
             	   {{ Form::submit('Save',array('class'=>'btn btn-success btn-sm')) }}

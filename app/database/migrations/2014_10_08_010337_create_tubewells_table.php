@@ -31,12 +31,14 @@ class CreateTubewellsTable extends Migration {
 			$table->integer('office_division_id');
 			$table->integer('office_sub_division_id');
 			$table->integer('office_section_id');
-			$table->string('depth_swl',20);
-			$table->string('depth_boring',20);
-			$table->string('size_boring',20);
+			$table->decimal('depth_swl',10,2);
+			$table->decimal('depth_boring',10,2);
+			$table->decimal('size_boring',10,2);
 			$table->date('drilling_date');
 			$table->date('commission_date');
-			$table->string('discharge',20);
+			$table->decimal('discharge',10,2);
+			$table->decimal('run_hr_rig',10,2);
+			$table->decimal('run_hr_compressor',10,2);
 			$table->string('platform',10);
 			$table->string('well_status',30);
 			$table->date('well_status_date');
