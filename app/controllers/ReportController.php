@@ -46,97 +46,97 @@ class ReportController extends \BaseController {
 	public function listtubewell(){
 		$report 	= Input::get('report');
 		$name		= Input::get('name');
-		$depthFrom	= Input::get('from');
-		$depthTo	= Input::get('to');
+		$this->from	= Input::get('from');
+		$this->to	= Input::get('to');
 		$operator	= '=';
 
 		if($report == 'tubewell'){
-			$where 			= 'id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'id';
+			$this->whereBetween		= 'depth_boring';
 			$operator		= '>';
 			$name 			= 0;
 		}
 
 		if($report == 'deliveries') {
-			$where 			= 'delivery_id';
-			$whereBetween	= 'depth_boring';
+			$this->where	= 'delivery_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'cezone') {
-			$where 			= 'office_zone_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'office_zone_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'circle'){
-			$where 			= 'office_circle_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'office_circle_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'division'){
-			$where 			= 'office_division_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'office_division_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'subdivision'){
-			$where 			= 'office_sub_division_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'office_sub_division_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'section'){
-			$where 			= 'office_section_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'office_section_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'district'){
-			$where 			= 'district_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'district_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'block'){
-			$where 			= 'block_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'block_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'panchayat'){
-			$where 			= 'panchayat_id';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'panchayat_id';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'discharge'){
-			$where 			= 'discharge';
-			$whereBetween	= 'discharge';
+			$this->where 			= 'discharge';
+			$this->whereBetween	= 'discharge';
 		}
 
 		if($report == 'depthswl'){
-			$where 			= 'depth_swl';
-			$whereBetween	= 'depth_swl';
+			$this->where 			= 'depth_swl';
+			$this->whereBetween	= 'depth_swl';
 		}
 
 		if($report == 'depthboring'){
-			$where 			= 'depth_boring';
-			$whereBetween	= 'depth_boring';
+			$this->where 			= 'depth_boring';
+			$this->whereBetween	= 'depth_boring';
 		}
 
 		if($report == 'sizeboring'){
-			$where 			= 'size_boring';
-			$whereBetween	= 'size_boring';
+			$this->where 			= 'size_boring';
+			$this->whereBetween	= 'size_boring';
 		}
 
 		if($report == 'platform'){
-			$where 			= 'platform';
-			$whereBetween	= 'platform';
+			$this->where 			= 'platform';
+			$this->whereBetween	= 'platform';
 		}
 
 		if($report == 'tubewellstatus'){
-			$where 			= 'tubewell_status';
-			$whereBetween	= 'tubewell_status';
+			$this->where 			= 'tubewell_status';
+			$this->whereBetween	= 'tubewell_status';
 		}
-
-		$tubewellAll= Tubewell::where($where,$operator,$name)
+		
+		$tubewellAll= Tubewell::where($this->where,$operator,$name)
 					->where(function($query){
-						if(!empty($from) && !empty($to)){ $query->whereBetween($whereBetween,array($from,$to)); }
-						if(!empty($from) && empty($to)){ $query->whereBetween($whereBetween,array($from,0)); }
-						if(empty($from) && !empty($to)){ $query->whereBetween($whereBetween,array(0,$to)); }
+						if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($this->whereBetween,array($this->from,$this->to)); }
+						if(!empty($this->from) && empty($this->to)){ $query->whereBetween($this->whereBetween,array($this->from,0)); }
+						if(empty($this->from) && !empty($this->to)){ $query->whereBetween($this->whereBetween,array(0,$this->to)); }
 					})
 					->orderBy('tubewell_code')
 					->paginate();
@@ -183,8 +183,8 @@ class ReportController extends \BaseController {
 		$block_table				= (new Block)->getTable();
 		$panchayat_table			= (new Panchayat)->getTable();
 
-		$from 	= Input::get('from');
-		$to 	= Input::get('to');
+		$this->from 		= Input::get('from');
+		$this->to 			= Input::get('to');
 			
 		if($searchValue == 'tubewell' || $searchValue == ""){
 			$reports 	= Tubewell::select(DB::raw('COUNT(*) AS countRow'))->get();
@@ -194,7 +194,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'deliveries'){
 			$reports = Tubewell::join($delivery_table,$delivery_table.'.id','=',$tubewell_table.'.delivery_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$delivery_table.'.name AS name,'.$tubewell_table.'.delivery_id AS nameId'))
-								->whereBetween("depth_boring",array($from,$to))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($delivery_table.'.id')
 								->orderBy('countRow')
 								->get();
@@ -204,6 +209,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'cezone'){
 			$reports = Tubewell::join($office_zone_table,$office_zone_table.'.id','=',$tubewell_table.'.office_zone_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$office_zone_table.'.name AS name,'.$tubewell_table.'.office_zone_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.office_zone_id')
 								->orderBy('countRow')
 								->get();
@@ -213,6 +224,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'circle'){
 			$reports = Tubewell::join($office_circle_table,$office_circle_table.'.id','=',$tubewell_table.'.office_circle_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$office_circle_table.'.name AS name,'.$tubewell_table.'.office_circle_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.office_circle_id')
 								->orderBy('countRow')
 								->get();
@@ -222,6 +239,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'division'){
 			$reports = Tubewell::join($office_division_table,$office_division_table.'.id','=',$tubewell_table.'.office_division_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$office_division_table.'.name AS name,'.$tubewell_table.'.office_division_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.office_division_id')
 								->orderBy('countRow')
 								->get();
@@ -231,6 +254,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'subdivision'){
 			$reports = Tubewell::join($office_sub_division_table,$office_sub_division_table.'.id','=',$tubewell_table.'.office_sub_division_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$office_sub_division_table.'.name AS name,'.$tubewell_table.'.office_sub_division_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.office_sub_division_id')
 								->orderBy('countRow')
 								->get();
@@ -240,6 +269,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'section'){
 			$reports = Tubewell::join($office_section_table,$office_section_table.'.id','=',$tubewell_table.'.office_section_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$office_section_table.'.name AS name,'.$tubewell_table.'.office_section_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.office_section_id')
 								->orderBy('countRow')
 								->get();
@@ -249,6 +284,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'district'){
 			$reports = Tubewell::join($district_table,$district_table.'.id','=',$tubewell_table.'.district_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$district_table.'.name AS name,'.$tubewell_table.'.district_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.district_id')
 								->orderBy('countRow')
 								->get();
@@ -258,6 +299,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'block'){
 			$reports = Tubewell::join($block_table,$block_table.'.id','=',$tubewell_table.'.block_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$block_table.'.name AS name,'.$tubewell_table.'.block_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.block_id')
 								->orderBy('countRow')
 								->get();
@@ -267,6 +314,12 @@ class ReportController extends \BaseController {
 		if($searchValue == 'panchayat'){
 			$reports = Tubewell::join($panchayat_table,$panchayat_table.'.id','=',$tubewell_table.'.panchayat_id')
 								->select(DB::raw('COUNT('.$tubewell_table.'.id) AS countRow, '.$panchayat_table.'.name AS name,'.$tubewell_table.'.panchayat_id AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy($tubewell_table.'.panchayat_id')
 								->orderBy('countRow')
 								->get();
@@ -275,6 +328,12 @@ class ReportController extends \BaseController {
 
 		if($searchValue == 'discharge'){
 			$reports = Tubewell::select(DB::raw('COUNT(*) AS countRow, discharge AS name, discharge AS nameId'))
+								->where(function($query){
+									$whereBetween	= "discharge";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy('discharge')
 								->orderBy('name')
 								->get();
@@ -282,6 +341,12 @@ class ReportController extends \BaseController {
 
 		if($searchValue == 'depthswl'){
 			$reports = Tubewell::select(DB::raw('COUNT(*) AS countRow, depth_swl AS name, depth_swl AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_swl";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy('depth_swl')
 								->orderBy('name')
 								->get();
@@ -289,6 +354,12 @@ class ReportController extends \BaseController {
 
 		if($searchValue == 'depthboring'){
 			$reports = Tubewell::select(DB::raw('COUNT(*) AS countRow, depth_boring AS name, depth_boring AS nameId'))
+								->where(function($query){
+									$whereBetween	= "depth_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy('depth_boring')
 								->orderBy('name')
 								->get();
@@ -296,6 +367,12 @@ class ReportController extends \BaseController {
 
 		if($searchValue == 'sizeboring'){
 			$reports = Tubewell::select(DB::raw('COUNT(*) AS countRow, size_boring AS name, size_boring AS nameId'))
+								->where(function($query){
+									$whereBetween	= "size_boring";
+									if(!empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,$this->to)); }
+									if(!empty($this->from) && empty($this->to)){ $query->whereBetween($whereBetween,array($this->from,0)); }
+									if(empty($this->from) && !empty($this->to)){ $query->whereBetween($whereBetween,array(0,$this->to)); }
+								})
 								->groupBy('size_boring')
 								->orderBy('name')
 								->get();
