@@ -89,7 +89,7 @@ class TubewellController extends \BaseController {
 		$tubewell->run_hr_compressor = Input::get('run_hr_compressor') ;
 		$tubewell->drilling_date = Input::get('drilling_date') ;
 		$tubewell->drill_status = Input::get('drill_status') ;
-		$tubewell->drilling_pipe = Input::get('drilling_pipe') ;
+		$tubewell->casing_pipe = Input::get('casing_pipe') ;
 		$tubewell->riser_pipe = Input::get('riser_pipe') ;
 		$tubewell->no_person_benefit = Input::get('no_person_benefit') ;
 		$tubewell->commission_date = Input::get('commission_date') ;
@@ -190,7 +190,7 @@ class TubewellController extends \BaseController {
 		$tubewell->size_boring = Input::get('size_boring') ;
 		$tubewell->drilling_date = Input::get('drilling_date') ;
 		$tubewell->drill_status = Input::get('drill_status') ;
-		$tubewell->drilling_pipe = Input::get('drilling_pipe') ;
+		$tubewell->casing_pipe = Input::get('casing_pipe') ;
 		$tubewell->riser_pipe = Input::get('riser_pipe') ;
 		$tubewell->no_person_benefit = Input::get('no_person_benefit') ;
 		$tubewell->commission_date = Input::get('commission_date') ;

@@ -77,8 +77,8 @@
                     <td>{{ Form::text('run_hr_compressor','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ Form::label('Length of Drilling Pipe') }}</td>
-                    <td>{{ Form::text('drilling_pipe','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::label('Length of Casing Pipe') }}</td>
+                    <td>{{ Form::text('casing_pipe','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Length of Riser Pipe') }}</td>
                     <td>{{ Form::text('riser_pipe','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Nos Person Benefited') }}</td>
