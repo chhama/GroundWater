@@ -39,6 +39,10 @@ class CreateTubewellsTable extends Migration {
 			$table->decimal('discharge',10,2);
 			$table->decimal('run_hr_rig',10,2);
 			$table->decimal('run_hr_compressor',10,2);
+			$table->string('drill_status',20);
+			$table->decimal('drilling_pipe',10,2);
+			$table->decimal('riser_pipe',10,2);
+			$table->integer('no_person_benefit',10);
 			$table->string('platform',10);
 			$table->string('well_status',30);
 			$table->date('well_status_date');

@@ -10,7 +10,10 @@
 					'name' => 'HP Mark III'
 				));
 			User::create(array(
-					'name' => 'Submersible Pump'
+					'name' => 'Solar Submersible Pump'
+				));
+			User::create(array(
+					'name' => 'Electric Submersible Pump'
 				));
 		}
 	}

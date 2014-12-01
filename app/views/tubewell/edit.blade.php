@@ -53,7 +53,7 @@
                 </tr>
                 <tr>
                     <td>{{ Form::label('Section') }}</td>
-                    <td>{{ Form::select('office_section_id',array($tubewellById->office_section_id=>$tubewellById->officeSection->name),null,array('class'=>'form-control input-sm','style'=>'width:100%','required','id'=>'office_section_id')) }}</td>
+                    <td>{{ Form::select('office_section_id',array($tubewellById->office_section_id=>$tubewellById->officeSection->name),null,array('class'=>'form-control input-sm','style'=>'width:100%','id'=>'office_section_id')) }}</td>
                     <td>{{ Form::label('Depth of SWL (Metre)') }}</td>
                     <td>{{ Form::text('depth_swl',null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Depth of Boring (Metre)') }}</td>
@@ -76,12 +76,20 @@
                     <td>{{ Form::text('run_hr_compressor',null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                 </tr>
                 <tr>
+                    <td>{{ Form::label('Length of Drilling Pipe') }}</td>
+                    <td>{{ Form::text('drilling_pipe',null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::label('Length of Riser Pipe') }}</td>
+                    <td>{{ Form::text('riser_pipe',null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::label('Nos Person Benefited') }}</td>
+                    <td>{{ Form::text('no_person_benefit',null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                </tr>
+                <tr>
                     <td>{{ Form::label('Is Platform Provided') }}</td>
                     <td>{{ Form::select('platform',array(''=>'','Yes'=>'Yes','No'=>'No'),null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::label('Drill Status') }}</td>
+                    <td>{{ Form::select('drill_status',array(''=>'','Successfull'=>'Successfull','Unsuccessfull'=>'Unsuccessfull'),null,array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Tubewell Status') }}</td>
                     <td>{{ Form::select('well_status',array('In Use'=>'In Use','Damage'=>'Damage','Defunct'=>'Defunct'),null,array('id'=>'well_status','class'=>'form-control input-sm','style'=>'width:100%','required','onChange'=>"return status(this.value)")) }}</td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
                 </tr>
             </tbody>
         </table>
