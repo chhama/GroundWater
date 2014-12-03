@@ -41,7 +41,6 @@
 					var data=JSON.parse(data);
 			        // alert(data);
 			        myCenter=  new google.maps.LatLng(data[0],data[1]);
-					//console.log(data.latitude);
 					var mapProp = {
 						center:myCenter,
 						zoom:17,
