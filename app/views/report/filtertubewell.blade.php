@@ -1,3 +1,46 @@
+<?php
+if(isset($_GET['btn']) && $_GET['btn'] == 'excel'){
+
+  $filename = 'tubewell';
+  header('Content-Type:application/xls');
+  header("Content-Disposition:attachment; filename=$filename.xls");
+  header("Pragma: no-cache");
+  header("Expires: 0");
+?>
+  <table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>No. of Tubewell</th>
+    </tr>
+    </thead>
+    <tbody>
+      <?php $slno = 1; $total = 0;?>
+      @foreach($reports as $report)
+      <tr bgcolor="">
+        <td>{{$slno}}</td>
+        <td><?php if(isset($report->name)){ echo $report->name; } else { echo 'No. of Tubewell'; } ?>&nbsp;</td>
+        <td><a href="{{ URL::route('report.listtubewell',array('report'=>Input::get('report'),'from'=>Input::get('from'),'to'=>Input::get('to'),'name'=>$report->nameId))}}">{{ $report->countRow }}</a>&nbsp;</td>
+      </tr>
+      <?php
+        $total = $total + ($report->countRow); 
+        $slno++; 
+      ?>
+      @endforeach
+  </tbody>
+  <tfoot>
+    <tr>
+      <td>&nbsp;</th>
+      <td align="right"><strong>Total</strong></th>
+      <td><strong><?=$total?></strong></th>
+    </tr>
+  </tfoot>
+  </table>
+<?php
+exit();
+}
+?>
 @extends('layout')
 
 @section('container')

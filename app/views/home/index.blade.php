@@ -26,7 +26,7 @@
 	{
 		// GET http://dev.groundwater/map/%22+data+%22/getLatlong 500 (Internal Server Error) 
 			$.ajax({
-				url: '	/map/' + data + '/getLatlong',// "{{ URL::route('map.getLatlong',array('id'=>'"+data+"')) }}",
+				url: '/map/' + data + '/getLatlong',// "{{ URL::route('map.getLatlong',array('id'=>'"+data+"')) }}",
 				type: 'GET',
 				 data: {'id' : data},
 				 type: 'GET',
