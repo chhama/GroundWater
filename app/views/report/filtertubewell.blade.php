@@ -7,7 +7,17 @@ if(isset($_GET['btn']) && $_GET['btn'] == 'excel'){
   header("Pragma: no-cache");
   header("Expires: 0");
 ?>
-  <table class="table table-hover">
+<style type="text/css">
+#mytable{
+  border-left:#000 1px solid;
+  border-top:#000 1px solid;
+}
+#mytable td{
+  border-right:#000 1px solid;
+  border-bottom:#000 1px solid;
+}
+</style>
+  <table id="mytable">
   <thead>
     <tr>
       <th>#</th>
@@ -64,6 +74,15 @@ exit();
         <div class="row">
           <label><strong>{{$label}} To</strong></label>
           {{Form::text('to',Input::get('to'), array('class' => 'input-sm', 'id' => 'to','size'=>'10'))}}
+        </div>
+      </div>
+      <div class="form-group col-md-5">
+        <div class="row">
+          <?php 
+            $url = Request::url();
+            $url_query = '?btn=excel&'.$_SERVER["QUERY_STRING"];
+          ?>
+          <a href={{ URL::to("$url$url_query")}} class="btn btn-success pull-right">Export</a>
         </div>
       </div>
     {{Form::close()}}
