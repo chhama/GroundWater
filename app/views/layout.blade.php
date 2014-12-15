@@ -81,11 +81,11 @@
 
 
     <?php  if(Auth::check()) {?>
-        <a href="{{ URL::route('user.edit') }}">
+        <a href="{{ URL::route('user.show',Auth::user()->id) }}">
           <span class='navbar-right glyphicon glyphicon-user' style='margin-top:15px; color:#337a89;width:90px;'> Profile </span>
         </a>
 
-        <a href='logout'>
+        <a href="{{ URL::to('logout')}}">
           <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px; color:red;width:90px;'> Logout</span>
         </a>
 

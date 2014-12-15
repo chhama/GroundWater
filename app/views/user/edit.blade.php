@@ -51,14 +51,14 @@
 				Add User
 			</div>
 			<div class="panel-body">
-				{{Form::open(['route'=>'user.store','class'=>'form-verticle'])}}
+				{{ Form::model($userById,array('url'=>route('user.update',$userById->id),'method'=>'put','class'=>'form-vertical')) }}
 				<div class="form-group">
 					{{Form::label('Name')}}
-					{{Form::text('name','',['class'=>'form-control','placeholder'=>'Name'])}}
+					{{Form::text('name',null,['class'=>'form-control','placeholder'=>'Name'])}}
 				</div>
 				<div class="form-group">
 					{{Form::label('Username')}}
-					{{Form::text('username','',['class'=>'form-control','placeholder'=>'username'])}}
+					{{Form::text('username',null,['class'=>'form-control','placeholder'=>'Username'])}}
 				</div>
 				<div class="form-group">
 					{{Form::label('Password')}}
@@ -69,7 +69,7 @@
 					{{Form::select('usertype',['administrator'=>'Administrator','user'=>'User'],null,['class'=>'form-control'])}}
 				</div>
 				<div class="form-group">
-					{{Form::submit('Create User',['class'=>'btn btn-default'])}}
+					{{Form::submit('Update User',['class'=>'btn btn-default'])}}
 				</div>
 				{{Form::close()}}			
 			</div>
