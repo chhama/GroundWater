@@ -14,7 +14,8 @@ class TubewellController extends \BaseController {
 
 	public function index()
 	{
-		$tubewellAll = Tubewell::orderBy('tubewell_code','asc')->paginate();
+		if(Input::get('sort')) { $filter = Input::get('sort'); } else { $filter="tubewell_code"; }
+		$tubewellAll = Tubewell::orderBy($filter,'asc')->paginate();
 		$index = $tubewellAll->getPerPage() * ($tubewellAll->getCurrentPage()-1) + 1;
 
 		return View::make('tubewell.index')

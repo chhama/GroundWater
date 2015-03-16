@@ -9,13 +9,13 @@
 <thead>
   <tr>
     <th width="85" height="38" align="center">Sl/No</th>
-    <th width="147" height="38" align="left">Tubewell ID</th>
-    <th width="144" height="38" align="left">Delivery Mode</th>
-    <th width="144" height="38" align="left">Address</th>
-    <th width="144" height="38" align="left">Location</th>
-    <th width="121" height="38" align="left">Office</th>
-    <th width="121" height="38" align="left">Status</th>
-    <th width="121" height="38" align="left">Commissioning Date</th>
+    <th width="147" height="38" align="left"><a href="{{ URL::to('tubewell?sort=tubewell_code') }}">Tubewell ID</a></th>
+    <th width="144" height="38" align="left"><a href="{{ URL::to('tubewell?sort=delivery_id') }}">Delivery Mode</a></th>
+    <th width="144" height="38" align="left"><a href="{{ URL::to('tubewell?sort=panchayat_id') }}">Address</a></th>
+    <th width="144" height="38" align="left"><a href="{{ URL::to('tubewell?sort=location') }}">Location</a></th>
+    <th width="121" height="38" align="left"><a href="{{ URL::to('tubewell?sort=office_zone_id') }}">Office</a></th>
+    <th width="121" height="38" align="left"><a href="{{ URL::to('tubewell?sort=well_status') }}">Status</a></th>
+    <th width="121" height="38" align="left"><a href="{{ URL::to('tubewell?sort=commission_date') }}">Commissioning Date</a></th>
     <th width="121" height="38" class="action text-center">Control</th>
   </tr>
   </thead>
