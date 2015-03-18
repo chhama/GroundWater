@@ -423,4 +423,18 @@ class ReportController extends \BaseController {
 		
 	}
 
+
+	public function waterqualitylist(){
+		
+		$waterQualityAll = WaterQuality::orderBy('tubewell_id','asc')->paginate();
+		$index = $waterQualityAll->getPerPage() * ($waterQualityAll->getCurrentPage()-1) + 1;
+
+		return View::make('report.waterqualitylist',compact('waterQualityAll','index'));
+	}
+
+	public function waterquality($id){
+		$waterQualityById = WaterQuality::find($id);
+		return View::make('report.waterquality',compact('waterQualityById'));
+	}
+
 }

@@ -42,6 +42,8 @@ Route::get('report/tubewell', array('uses'=>'ReportController@tubewell','as'=>'r
 Route::get('report/filtertubewell', array('uses'=>'ReportController@filtertubewell','as'=>'report.filtertubewell'));
 Route::get('report/tubewellstatus', array('uses'=>'ReportController@tubewellstatus','as'=>'report.tubewellstatus'));
 Route::get('report/listtubewell', array('uses'=>'ReportController@listtubewell','as'=>'report.listtubewell'));
+Route::get('report/waterqualitylist', array('uses'=>'ReportController@waterqualitylist','as'=>'report.waterqualitylist'));
+Route::get('report/{id}/waterquality', array('uses'=>'ReportController@waterquality','as'=>'report.waterquality'));
 Route::resource('officesection', 'OfficeSectionController');
 Route::resource('sessions', 'SessionsController');
 Route::resource('user', 'UsersController');

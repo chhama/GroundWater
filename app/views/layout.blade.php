@@ -73,6 +73,7 @@
             <li><a href="{{ URL::route('report.tubewell','report=tubewell')}}">No of Tubewell</a></li>
             <!-- <li><a href="{{ URL::route('officecircle.index')}}">Water Quality Parameters</a></li> -->
             <li><a href="{{ URL::route('report.tubewellstatus')}}">Tube Well Status</a></li>
+            <li><a href="{{ URL::route('report.waterqualitylist')}}">Water Quality</a></li>
           </ul>
       </li>
 
