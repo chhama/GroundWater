@@ -437,4 +437,20 @@ class ReportController extends \BaseController {
 		return View::make('report.waterquality',compact('waterQualityById'));
 	}
 
+	public function lithologylist(){
+		
+		$tubewellAll = Tubewell::orderBy('tubewell_code','asc')->paginate();
+		$index = $tubewellAll->getPerPage() * ($tubewellAll->getCurrentPage()-1) + 1;
+
+		return View::make('report.lithologylist',compact('tubewellAll','index'));
+	}
+
+	public function lithology($id){
+		
+		$lithologyByTubewell = Lithologies::where('tubewell_id','=',$id)->orderBy('tubewell_id','asc')->paginate();
+		$index = $lithologyByTubewell->getPerPage() * ($lithologyByTubewell->getCurrentPage()-1) + 1;
+
+		return View::make('report.lithology',compact('lithologyByTubewell','index'));
+	}
+
 }
