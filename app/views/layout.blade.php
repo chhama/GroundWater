@@ -81,16 +81,15 @@
 
     </ul>
 
-
+    
     <?php  if(Auth::check()) {?>
-        <a href="{{ URL::route('user.show',Auth::user()->id) }}">
-          <span class='navbar-right glyphicon glyphicon-user' style='margin-top:15px; color:#337a89;width:90px;'> Profile </span>
-        </a>
-
         <a href="{{ URL::to('logout')}}">
           <span class='navbar-right glyphicon glyphicon-off' style='margin-top:15px; color:red;width:90px;'> Logout</span>
         </a>
 
+        <a href="{{ URL::route('user.show',Auth::user()->id) }}">
+          <span class='navbar-right glyphicon glyphicon-user' style='margin-top:15px; color:#337a89;width:90px;'> Profile </span>
+        </a>
   <?php } else { ?>
   {{Form::open(['route'=>'sessions.store','class'=>'navbar-form navbar-right'])}}
       {{"<div class='form-group'>"}}
@@ -100,8 +99,10 @@
         {{Form::submit('Login',['class'=>'btn btn-default'])}}
         {{Form::close()}}
   <?php } ?>
+  <a href="{{ URL::route('backups.index') }}">
+      <span class='navbar-right glyphicon glyphicon-hdd' style='margin-top:15px; color:red; width:90px;'> BackUp </span>
+    </a>
     </div><!-- /.navbar-collapse -->
-  
   </nav>
 
   @if(Session::has('flash_message'))
@@ -109,16 +110,13 @@
           <p class="alert alert-{{Session::get('msgtype')}}"><strong>{{ Session::get('flash_message') }}</strong></p>
     </div>
   @endif
-
- 
 <!-- <div class="jumbotron">
     <h1 class="text-center">Hello World</h1>
 </div> -->
-
     <!-- jQuery -->
     {{ HTML::Script('js/jquery.js') }}
     <!-- Bootstrap JavaScript -->
     {{ HTML::Script('js/bootstrap.js') }}
- @yield('container')
+    @yield('container')
   </body>
 </html>
