@@ -68,7 +68,7 @@
             <div class="form-group">
             	<div class="col-sm-4">{{ Form::label('District') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('district_id',array('')+$districtAll,null,array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('district_id',$districtAll,null,array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">

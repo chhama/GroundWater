@@ -57,7 +57,7 @@
             <div class="form-group">
             	<div class="col-sm-4">{{ Form::label('CE Zone') }}</div>
                 <div class="col-sm-8">
-                    {{ Form::select('office_zone_id',array('')+$officeZoneAll,null,array('class'=>'form-control input-sm','required')) }}
+                    {{ Form::select('office_zone_id',$officeZoneAll,null,array('class'=>'form-control input-sm','required')) }}
                 </div>
             </div>
             <div class="form-group">
