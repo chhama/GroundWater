@@ -32,10 +32,10 @@ class BackupController extends \BaseController {
 	 */
 	public function store()
 	{
-		$host = 'localhost';
-		$user = 'root';
-		$pass = '';
-		$name = 'groundwater_db';
+		$host = Config::get('database.connections.mysql.host');		//'localhost';
+		$user = Config::get('database.connections.mysql.username');	//'root';
+		$pass = Config::get('database.connections.mysql.password');	//'';
+		$name = Config::get('database.connections.mysql.database');	//'groundwater_db';
 		$tables = '*';
 		
 		$link = mysql_connect($host,$user,$pass);
@@ -250,9 +250,9 @@ class BackupController extends \BaseController {
 		
 		$sql_query = $output;
 		
-		$host = 'localhost';
-		$user = 'root';
-		$pass = '';
+		$host = Config::get('database.connections.mysql.host');		//'localhost';
+		$user = Config::get('database.connections.mysql.username');	//'root';
+		$pass = Config::get('database.connections.mysql.password');	//'';
 		mysql_connect($host,$user,$pass) or die('error connection');
 
 		$i=1;

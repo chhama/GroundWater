@@ -34,23 +34,28 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ URL::route('district.index') }}">District</a></li>
-        <li><a href="{{ URL::route('block.index') }}">Block</a></li>
-        <li><a href="{{ URL::route('panchayat.index') }}">Panchayat</a></li>
-        <li><a href="{{ URL::route('lithology.index') }}">Lithology</a></li>
-      </ul>
-      
-      <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tubewells <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="{{ URL::route('tubewell.index') }}">List</a></li>
-          <li><a href="{{ URL::route('tubewell.create') }}">Create</a></li>
-        </ul>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">SYSTEM <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ URL::route('home')}}">Home</a></li>
+            <!-- <li><a href="{{ URL::route('officecircle.index')}}">Water Quality Parameters</a></li> -->
+            <li><a href="{{ URL::route('backups.index')}}">Back Up</a></li>
+            <li><a href="{{ URL::route('user.index')}}">User Account</a></li>
+            <?php  if(Auth::check()) {?>
+            <li><a href="{{ URL::to('logout')}}">Logout</a></li>
+            <?php } ?>
+          </ul>
         </li>
-
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Office <b class="caret"></b></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">MASTER <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ URL::route('district.index') }}">District</a></li>
+            <li><a href="{{ URL::route('block.index') }}">Block</a></li>
+            <li><a href="{{ URL::route('panchayat.index') }}">Panchayat</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">OFFICE <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="{{ URL::route('officezone.index')}}">Zone</a></li>
             <li><a href="{{ URL::route('officecircle.index')}}">Circle</a></li>
@@ -59,13 +64,20 @@
             <li><a href="{{ URL::route('officesection.index')}}">Section</a></li>
           </ul>
         </li>
+      
+      
+     
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tubewells <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{ URL::route('tubewell.index') }}">List</a></li>
+          <li><a href="{{ URL::route('tubewell.create') }}">Create</a></li>
+        </ul>
+        </li>
+        <li><a href="{{ URL::route('lithology.index') }}">Lithology</a></li>
 
-        <li><a href="{{ URL::route('waterquality.index') }}">Water Quality</a></li>
 
-
-        
-        <li><a href="{{ URL::route('user.index') }}">Users</a></li>
-           
+        <li><a href="{{ URL::route('waterquality.index') }}">Water Quality</a></li>           
 
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
@@ -99,9 +111,6 @@
         {{Form::submit('Login',['class'=>'btn btn-default'])}}
         {{Form::close()}}
   <?php } ?>
-  <a href="{{ URL::route('backups.index') }}">
-      <span class='navbar-right glyphicon glyphicon-hdd' style='margin-top:15px; color:red; width:90px;'> BackUp </span>
-    </a>
     </div><!-- /.navbar-collapse -->
   </nav>
 
