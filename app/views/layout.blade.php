@@ -68,17 +68,20 @@
       
      
         <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tubewells <b class="caret"></b></a>
-        <ul class="dropdown-menu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tubewells <b class="caret"></b></a>
+          <ul class="dropdown-menu">
           <li><a href="{{ URL::route('tubewell.index') }}">List</a></li>
           <li><a href="{{ URL::route('tubewell.create') }}">Create</a></li>
-        </ul>
+          </ul>
         </li>
         <li><a href="{{ URL::route('lithology.index') }}">Lithology</a></li>
-
-
-        <li><a href="{{ URL::route('waterquality.index') }}">Water Quality</a></li>           
-
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Water Quality <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="{{ URL::route('waterquality.index') }}">List</a></li> 
+            <li><a href="{{ URL::route('waterquality.create') }}">Create</a></li> 
+          </ul>
+        </li>
       <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Report <b class="caret"></b></a>
           <ul class="dropdown-menu">

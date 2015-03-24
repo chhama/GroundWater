@@ -14,10 +14,10 @@ class WaterQualityController extends \BaseController {
 	 */
 	public function index()
 	{
-		$waterqualityAll = WaterQuality::orderBy('id','asc')->paginate();
-		$index = $waterqualityAll->getPerPage() * ($waterqualityAll->getCurrentPage()-1) + 1;
+		$waterQualityAll = WaterQuality::orderBy('tubewell_id','asc')->paginate();
+		$index = $waterQualityAll->getPerPage() * ($waterQualityAll->getCurrentPage()-1) + 1;
 		return View::make('waterquality.index')->with(array(
-						'waterqualityAll' => $waterqualityAll,
+						'waterQualityAll' => $waterQualityAll,
 						'index'	=> $index
 					));	
 	}
@@ -30,7 +30,7 @@ class WaterQualityController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('waterquality.create');
 	}
 
 
@@ -113,7 +113,10 @@ class WaterQualityController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$waterqualityById = WaterQuality::find($id);
+		return View::make('waterquality.edit')->with(array(
+						'waterqualityById' => $waterqualityById
+					));	
 	}
 
 
@@ -125,7 +128,53 @@ class WaterQualityController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$quality = WaterQuality::find($id);
+		$quality->tubewell_id = Input::get('tubewell_id');
+		$quality->ph = Input::get('ph'); 
+		$quality->colour = Input::get('colour');
+		$quality->odour = Input::get('odour');
+		$quality->taste = Input::get('taste');
+		$quality->turbidity = Input::get('turbidity');
+		$quality->caco3 = Input::get('caco3');
+		$quality->ammonia = Input::get('ammonia');
+		$quality->iron = Input::get('iron');
+		$quality->chlorides = Input::get('chlorides');
+		$quality->free_residual = Input::get('free_residual');
+		$quality->dissolved_solid = Input::get('dissolved_solid');
+		$quality->calcium = Input::get('calcium');
+		$quality->magnesium = Input::get('magnesium');
+		$quality->copper = Input::get('copper');
+		$quality->manganese = Input::get('manganese');
+		$quality->sulphate = Input::get('sulphate');
+		$quality->nitrates = Input::get('nitrates');
+		$quality->fluoride = Input::get('fluoride');
+		$quality->phenolic = Input::get('phenolic');
+		$quality->mercury = Input::get('mercury');
+		$quality->cadmium = Input::get('cadmium');
+		$quality->selenium = Input::get('selenium');
+		$quality->arsenic = Input::get('arsenic');
+		$quality->cyanide = Input::get('cyanide');
+		$quality->lead = Input::get('lead');
+		$quality->zinc = Input::get('zinc');
+		$quality->anionic = Input::get('anionic');
+		$quality->chromium = Input::get('chromium');
+		$quality->polynuclear = Input::get('polynuclear');
+		$quality->mineral_oil = Input::get('mineral_oil');
+		$quality->pesticides = Input::get('pesticides');
+		$quality->radioactive = Input::get('radioactive');
+		$quality->alkalinity = Input::get('alkalinity');
+		$quality->aluminium = Input::get('aluminium');
+		$quality->nickel = Input::get('nickel');
+		$quality->boron = Input::get('boron');
+		$quality->ecoli = Input::get('ecoli');
+		$quality->tested_by = Input::get('tested_by');
+		$quality->test_date = Input::get('test_date');
+
+
+		if($quality->save())
+			return Redirect::route('waterquality.index')->with(['flash_message'=>'Record added successfully','msgtype'=>'success']);
+		else
+			return Redirect::back()->with('flash_message','Unable to create record')->withInput();
 	}
 
 
@@ -137,7 +186,8 @@ class WaterQualityController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		WaterQuality::destroy($id);
+		return Redirect::route('waterquality.index');
 	}
 
 
