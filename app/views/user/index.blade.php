@@ -27,7 +27,7 @@
 						<td>
 				    	{{Form::open(array('url'=>route('user.destroy', array($user->id)),'method'=>'delete'))}}
 				            <a href="{{route('user.edit', array($user->id))}}" class="btn btn-fab btn-fab-mini btn-raised btn-sm btn-primary"  style="width:20px; height:20px; padding:1px;" title="Edit User"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
-				            <button type="submit" onclick="return confirm ('<?php echo _('Are you sure') ?>');" name="id" class="btn btn-fab btn-fab-mini btn-raised btn-sm btn-danger" style="width:20px; height:20px; padding:1px;" title="Remove User" value="{{$user->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+				            <button type="submit" onclick="return confirm ('<?php echo ('Are you sure') ?>');" name="id" class="btn btn-fab btn-fab-mini btn-raised btn-sm btn-danger" style="width:20px; height:20px; padding:1px;" title="Remove User" value="{{$user->id}}"><i class="glyphicon glyphicon-trash"></i></button>
 				        {{Form::close()}}
 						</td>
 					</tr>

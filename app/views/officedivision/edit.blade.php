@@ -26,7 +26,7 @@
     <td align="left" class="action text-center">
     	{{Form::open(array('url'=>route('officedivision.destroy', array($officeDivision->id)),'method'=>'delete'))}}
 			<a href="{{route('officedivision.edit', array($officeDivision->id))}}" class="btn btn-xs btn-success tooltip-top" title="Edit prod"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
-			<button type="submit" onclick="return confirm ('<?php echo _('Are you sure') ?>');" name="id" class="btn btn-xs btn-danger tooltip-top" title="Remove Catalog" value="{{$officeDivision->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+			<button type="submit" onclick="return confirm ('<?php echo ('Are you sure') ?>');" name="id" class="btn btn-xs btn-danger tooltip-top" title="Remove Catalog" value="{{$officeDivision->id}}"><i class="glyphicon glyphicon-trash"></i></button>
 		{{Form::close()}}
     </td>
     </tr>

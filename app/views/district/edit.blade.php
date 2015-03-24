@@ -24,7 +24,7 @@
     <td align="left" class="action text-center">
     	{{Form::open(array('url'=>route('district.destroy', array($district->id)),'method'=>'delete'))}}
 			<a href="{{route('district.edit', array($district->id))}}" class="btn btn-xs btn-success tooltip-top" title="Edit prod"><i class="glyphicon glyphicon-edit"></i></a>&nbsp;&nbsp;
-			<button type="submit" onclick="return confirm ('<?php echo _('Are you sure') ?>');" name="id" class="btn btn-xs btn-danger tooltip-top" title="Remove Catalog" value="{{$district->id}}"><i class="glyphicon glyphicon-trash"></i></button>
+			<button type="submit" onclick="return confirm ('<?php echo ('Are you sure') ?>');" name="id" class="btn btn-xs btn-danger tooltip-top" title="Remove Catalog" value="{{$district->id}}"><i class="glyphicon glyphicon-trash"></i></button>
 		{{Form::close()}}
     </td>
     </tr>
