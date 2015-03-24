@@ -433,8 +433,11 @@ class ReportController extends \BaseController {
 	}
 
 	public function waterquality($id){
+		$black	= "style='color:#000000'";
+		$red	= "style='color:#FF0000'";
+		$green	= "style='color:#01DF01'";
 		$waterQualityById = WaterQuality::find($id);
-		return View::make('report.waterquality',compact('waterQualityById'));
+		return View::make('report.waterquality',compact('waterQualityById','red','green','black'));
 	}
 
 	public function lithologylist(){
