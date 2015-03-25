@@ -110,12 +110,8 @@
 
 	</div>
 </div>
-
 	 <script language='javascript'>
-
-      
         $('#datetimepicker').datetimepicker({
-            step: 5
         });
 
     </script>

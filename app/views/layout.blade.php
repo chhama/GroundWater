@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
   {{ HTML::Style('css/bootstrap.min.css') }}
 
+  {{ HTML::Style('css/jquery.datetimepicker.css') }}
   @yield('extrahead')
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -129,6 +130,8 @@
     {{ HTML::Script('js/jquery.js') }}
     <!-- Bootstrap JavaScript -->
     {{ HTML::Script('js/bootstrap.js') }}
+
+    {{ HTML::Script('js/jquery.datetimepicker.js') }}
     @yield('container')
   </body>
 </html>

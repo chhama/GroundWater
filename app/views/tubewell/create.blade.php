@@ -64,9 +64,9 @@
                     <td>{{ Form::label('Diameter of Borehole (Metre)') }}</td>
                     <td>{{ Form::text('size_boring','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
                     <td>{{ Form::label('Drilling Date') }}</td>
-                    <td>{{ Form::text('drilling_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::text('drilling_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required','id'=>'drillingdate')) }}</td>
                     <td>{{ Form::label('Commissioning Date') }}</td>
-                    <td>{{ Form::text('commission_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required')) }}</td>
+                    <td>{{ Form::text('commission_date','',array('class'=>'form-control input-sm','style'=>'width:100%','required','id'=>'commissiondate')) }}</td>
                 </tr>
                 <tr>
                     <td>{{ Form::label('Discharge (lt/hr)') }}</td>
@@ -107,7 +107,14 @@
     </div>
 </div>
 
-<script>
+<script language='javascript'>
+
+    $('#drillingdate').datetimepicker({
+        });
+
+    $('#commissiondate').datetimepicker({
+        });
+
     function blockByDist(block){
         $.ajax({
             url: "{{ URL::route('tubewell.block')}}",
